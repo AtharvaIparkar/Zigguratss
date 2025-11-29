@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zigguratss - Luxury Art Gallery</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <!-- Mobile Toggle -->
+            <button class="nav-toggle" id="navToggle">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div>
+                <img class="logo1" id="logo1" src="./b3756ef6fb55408a83bef1ae70acc759.png" />
+            </div>
+
+            <!-- Left Nav -->
+            <div class="nav-left" id="navLeft">
+                <ul class="nav-links">
+                    <li><a href="#/">Home</a></li>
+                    <li><a href="#/artwork" class="has-mega" data-mega-type="artwork">Artwork</a></li>
+                    <li><a href="#/artist" class="has-mega" data-mega-type="artist">Artists</a></li>
+                    <li><a href="#/exhibitions">Exhibitions</a></li>
+                    <li><a href="#/about">About</a></li>
+                </ul>
+            </div>
+
+            <!-- Logo -->
+            <a href="#/" class="logo">ZIGGURATSS</a>
+
+            <!-- Right Nav -->
+            <div class="nav-right">
+                <div class="search-wrapper" id="searchWrapper">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search...">
+                    <button class="search-btn" id="searchBtn">
+                        <img height="20" width="20" src="./search-alt-1-svgrepo-com.svg" />
+                    </button>
+                </div>
+
+                <div class="search-btn1">
+                    <img height="22" width="22" src="./person-svgrepo-com.svg" />
+                </div>
+
+                <div class="search-btn2">
+                    <img height="22" width="22" src="./cart-large-2-svgrepo-com.svg" />
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mega Menu -->
+        <div class="mega-panel" id="megaPanel">
+            <div class="mega-content" id="megaContent"></div>
+            <div class="view-all"><a href="#/" id="megaViewAll">View All</a></div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="page-container" id="pageContainer">
+        <h2>Welcome to Zigguratss</h2>
+    </main>
+
+    <script src="data.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>
