@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zigguratss - Luxury Art Gallery</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Story+Script:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        
+        <nav class="nav-container">
+            <!-- Mobile Toggle -->
+            <button class="nav-toggle" id="navToggle">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div>
+                <img class="logo1" id="logo1" src="./assets/logo.png" />
+            </div>
+
+            <!-- Left Nav -->
+            <div class="nav-left" id="navLeft">
+                <ul class="nav-links">
+                    <li><a href="#/">Home</a></li>
+                    <li><a href="#/artwork" class="has-mega" data-mega-type="artwork">Artwork</a></li>
+                    <li><a href="#/artist" class="has-mega" data-mega-type="artist">Artists</a></li>
+                    <li><a href="#/about">About</a></li>
+                    <li><a href="#/blog">Blog</a></li>
+                    <li><a href="#/contest">Contest</a></li>
+                    <li><a href="#/contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Right Nav -->
+            <div class="nav-right">
+                <div class="search-wrapper" id="searchWrapper">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search...">
+                    <button class="search-btn" id="searchBtn">
+                        <img height="22" width="22" src="./assets/search-alt-1-svgrepo-com.svg" />
+                    </button>
+                </div>
+
+                <div class="search-btn1">
+                    <img height="22" width="22" src="./assets/person-svgrepo-com.svg" />
+                </div>
+
+                <div class="search-btn2">
+                    <img height="22" width="22" src="./assets/cart-large-minimalistic-svgrepo-com.svg" />
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mega Menu -->
+        <div class="mega-panel" id="megaPanel">
+            <div class="mega-content" id="megaContent"></div>
+            <div class="view-all"><a href="#/" id="megaViewAll">View All</a></div>
+        </div>
+    </header>
+
+    <!-- Hero Carousel -->
+    <div class="hero-carousel" role="region" aria-label="Featured artwork carousel">
+        <div id="slides-container"></div>
+
+        <div class="carousel-controls">
+            <button class="carousel-arrow prev" aria-label="Previous slide">‹</button>
+            <div class="carousel-dots" role="tablist" aria-label="Slide navigation" id="dots-container"></div>
+            <button class="carousel-arrow next" aria-label="Next slide">›</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="page-container" id="pageContainer">
+        <h2>Welcome to Zigguratss</h2>
+    </main>
+
+
+    <script src="main.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
