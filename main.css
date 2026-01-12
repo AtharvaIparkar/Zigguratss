@@ -189,7 +189,7 @@ body {
   right: 0;
   backdrop-filter: blur(30px);
   border-bottom: 1px solid #e5e5e5;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
@@ -329,7 +329,7 @@ body {
   color: #fff;
   border-radius: 12px;
   font-weight: 500;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .view-all {
@@ -455,6 +455,7 @@ body {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .quick-links a {
@@ -515,8 +516,15 @@ body {
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 .frame-inner {
@@ -536,7 +544,7 @@ body {
   border-radius: 4px;
   background: var(--white);
   padding: 10px;
-  box-shadow: 
+  box-shadow:
     inset 0 0 0 2px #d4af37,
     0 0 0 1px rgba(0, 0, 0, 0.1);
 }
@@ -717,7 +725,7 @@ body {
     margin-top: 70px;
     height: 76vh;
   }
-  
+
   .nav-container {
     padding: 0 20px;
     height: 70px;
@@ -743,11 +751,11 @@ body {
     top: 100%;
     left: 0;
     right: 0;
-    background-color: rgba(255,255,255,0.6);
+    background-color: rgba(255, 255, 255, 0.6);
     flex-direction: column;
     padding: 25px 20px;
     border-bottom: 1px solid #e5e5e5;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
     transform: translateY(-100%);
     opacity: 0;
     visibility: hidden;
@@ -771,7 +779,7 @@ body {
     font-size: 16px;
     padding: 12px 0;
     text-align: center;
-    border-bottom: 1px solid rgba(196,30,58,0.1);
+    border-bottom: 1px solid rgba(196, 30, 58, 0.1);
   }
 }
 
@@ -952,64 +960,49 @@ body {
     font-size: 0.85rem;
     padding: 3px 0;
   }
-}ont-size: 1rem;
-    max-width: 100%;
-    margin-bottom: 1.5rem;
-  }
+}
 
-  .cta-button {
-    padding: 12px 24px;
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
-  }
+.cta-button {
+  padding: 12px 24px;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
 
-  .artwork-gallery {
-    height: 250px;
-    margin-top: 1rem;
-    flex: 1;
-  }
+.artwork-gallery {
+  height: 250px;
+  margin-top: 1rem;
+  flex: 1;
+}
 
-  .artwork-frame {
-    width: 100px;
-    height: 130px;
-  }
+.artwork-frame {
+  width: 100px;
+  height: 130px;
+}
 
-  .frame--portrait {
-    width: 90px;
-    height: 120px;
-  }
+.frame--portrait {
+  width: 90px;
+  height: 120px;
+}
 
-  .frame--landscape {
-    width: 120px;
-    height: 90px;
-  }
+.frame--landscape {
+  width: 120px;
+  height: 90px;
+}
 
-  .frame--square {
-    width: 100px;
-    height: 100px;
-  }
+.frame--square {
+  width: 100px;
+  height: 100px;
+}
 
-  .carousel-controls {
-    bottom: 15px;
-    gap: 15px;
-  }
+.carousel-controls {
+  bottom: 15px;
+  gap: 15px;
+}
 
-  .carousel-arrow {
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
-  }
-
-  .quick-links {
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-
-  .quick-links a {
-    font-size: 0.85rem;
-    padding: 3px 0;
-  }
+.carousel-arrow {
+  width: 40px;
+  height: 40px;
+  font-size: 1rem;
 }
 
 /* Small Mobile */
@@ -1187,6 +1180,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .slide,
   .artwork-frame,
   .frame-inner,
@@ -1196,7 +1190,7 @@ body {
   .logo1 {
     transition: none;
   }
-  
+
   .artwork-frame.static {
     animation: none;
   }
@@ -1206,11 +1200,12 @@ body {
   .artwork-frame {
     border: 3px solid var(--text-color);
   }
-  
+
   .carousel-arrow {
     border: 2px solid var(--text-color);
   }
 }
+
 /* Frameless images for sculpture gallery */
 .artwork-image-only {
   position: absolute;
@@ -1232,4 +1227,262 @@ body {
   object-fit: cover;
   border-radius: 8px;
   transition: transform 0.3s ease;
+}
+
+@media (max-width: 768px) {
+
+  /* ----- SLIDE 1, 2 & 3: Main Slide Container Layout ----- */
+  .slide:first-child,
+  .slide:nth-child(2),
+  .slide:nth-child(3) {
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px 15px !important;
+    overflow: hidden;
+    /* Allow frames to be cropped at edges */
+  }
+
+  /* ----- SLIDE 1, 2 & 3: Text Content - LEFT SIDE ----- */
+  .slide:first-child .slide-content,
+  .slide:nth-child(2) .slide-content,
+  .slide:nth-child(3) .slide-content {
+    position: relative;
+    z-index: 10;
+    flex: 0 0 55%;
+    max-width: 55%;
+    text-align: left;
+    padding-left: 5px;
+    padding-right: 10px;
+  }
+
+  .slide:first-child h1,
+  .slide:nth-child(2) h1,
+  .slide:nth-child(3) h1 {
+    font-size: clamp(1.4rem, 5vw, 1.8rem) !important;
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
+  }
+
+  .slide:first-child p,
+  .slide:nth-child(2) p,
+  .slide:nth-child(3) p {
+    font-size: 0.85rem !important;
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .slide:first-child .cta-button,
+  .slide:nth-child(2) .cta-button,
+  .slide:nth-child(3) .cta-button {
+    padding: 10px 15px !important;
+    font-size: 0.8rem !important;
+    margin-bottom: 0.8rem;
+  }
+
+  .slide:first-child .quick-links,
+  .slide:nth-child(2) .quick-links,
+  .slide:nth-child(3) .quick-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 0.3rem;
+  }
+
+  .slide:first-child .quick-links a,
+  .slide:nth-child(2) .quick-links a,
+  .slide:nth-child(3) .quick-links a {
+    font-size: 0.7rem;
+    padding: 3px 0;
+  }
+
+  /* ----- SLIDE 1, 2 & 3: Gallery Container - RIGHT SIDE ----- */
+  .slide:first-child .artwork-gallery,
+  .slide:nth-child(2) .artwork-gallery,
+  .slide:nth-child(3) .artwork-gallery {
+    position: absolute !important;
+    right: -30px;
+    /* Extend beyond viewport for cropped effect */
+    top: 0;
+    bottom: 0;
+    width: 55%;
+    height: 100%;
+    display: block;
+    perspective: none;
+    overflow: visible;
+  }
+
+  /* ----- SLIDE 1, 2 & 3: Hide extra frames beyond 2 ----- */
+  .slide:first-child .artwork-gallery .artwork-frame:nth-child(n+3),
+  .slide:nth-child(2) .artwork-gallery .artwork-frame:nth-child(n+3),
+  .slide:nth-child(3) .artwork-gallery .artwork-frame:nth-child(n+3) {
+    display: none !important;
+  }
+
+  /* ----- SLIDE 1, 2 & 3: Frame Positioning - Staggered at corners ----- */
+  .slide:first-child .artwork-frame,
+  .slide:nth-child(2) .artwork-frame,
+  .slide:nth-child(3) .artwork-frame {
+    position: absolute !important;
+    margin: 0 !important;
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.25));
+    transition: none !important;
+    animation: none !important;
+  }
+
+  /* ===== SLIDE 1: Frame Positions ===== */
+  /* First frame - TOP RIGHT corner */
+  .slide:first-child .artwork-frame:nth-child(1) {
+    top: -5% !important;
+    right: -5% !important;
+    left: auto !important;
+    transform: rotate(3deg) !important;
+    z-index: 2 !important;
+    width: clamp(120px, 40vw, 180px) !important;
+    height: clamp(150px, 50vw, 220px) !important;
+  }
+
+  /* Second frame - BOTTOM RIGHT corner */
+  .slide:first-child .artwork-frame:nth-child(2) {
+    bottom: 0% !important;
+    right: 5% !important;
+    top: auto !important;
+    left: auto !important;
+    transform: rotate(-4deg) !important;
+    z-index: 3 !important;
+    width: clamp(110px, 38vw, 170px) !important;
+    height: clamp(140px, 48vw, 210px) !important;
+  }
+
+  /* ===== SLIDE 2: Frame Positions (Centered Vertical Stack) ===== */
+  /* First frame - CENTER RIGHT, upper */
+  .slide:nth-child(2) .artwork-frame:nth-child(1) {
+    top: 8% !important;
+    right: -8% !important;
+    left: auto !important;
+    transform: rotate(-2deg) !important;
+    z-index: 2 !important;
+    width: clamp(115px, 38vw, 165px) !important;
+    height: clamp(145px, 48vw, 210px) !important;
+  }
+
+  /* Second frame - CENTER RIGHT, lower */
+  .slide:nth-child(2) .artwork-frame:nth-child(2) {
+    bottom: 12% !important;
+    right: 8% !important;
+    top: auto !important;
+    left: auto !important;
+    transform: rotate(5deg) !important;
+    z-index: 3 !important;
+    width: clamp(105px, 36vw, 160px) !important;
+    height: clamp(135px, 46vw, 200px) !important;
+  }
+
+  /* ===== SLIDE 3: Single Frame Layout ===== */
+  /* Hide 2nd frame on Slide 3 */
+  .slide:nth-child(3) .artwork-gallery .artwork-frame:nth-child(2) {
+    display: none !important;
+  }
+
+  /* First frame - Centered right, straight down */
+  .slide:nth-child(3) .artwork-frame:nth-child(1) {
+    top: 50% !important;
+    right: -5% !important;
+    left: auto !important;
+    transform: translateY(-50%) rotate(2deg) !important;
+    z-index: 3 !important;
+    width: clamp(130px, 42vw, 190px) !important;
+    height: clamp(165px, 52vw, 240px) !important;
+  }
+
+  /* ----- SLIDE 2 & 3: Frame Inner - Disable 3D ----- */
+  /* Note: Slide 1 keeps 3D flip animation */
+  .slide:nth-child(2) .frame-inner,
+  .slide:nth-child(3) .frame-inner {
+    transform-style: flat;
+    transform: none !important;
+  }
+
+  /* ----- SLIDE 1: Enable 3D Flip ----- */
+  .slide:first-child .frame-inner {
+    transform-style: preserve-3d;
+  }
+
+  .slide:first-child .artwork-frame {
+    transition: all 0.4s ease !important;
+  }
+
+  /* ----- SLIDE 1, 2 & 3: Frame Border Styling ----- */
+  .slide:first-child .frame-face,
+  .slide:nth-child(2) .frame-face,
+  .slide:nth-child(3) .frame-face {
+    border-width: 6px;
+    padding: 6px;
+  }
+
+  /* ----- SLIDE 1, 2 & 3: Image Styling ----- */
+  .slide:first-child .artwork-image,
+  .slide:nth-child(2) .artwork-image,
+  .slide:nth-child(3) .artwork-image {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* ----- Disable hover effects on mobile ----- */
+  .slide:first-child .artwork-frame:hover,
+  .slide:nth-child(2) .artwork-frame:hover,
+  .slide:nth-child(3) .artwork-frame:hover {
+    transform: inherit !important;
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.25));
+  }
+}
+
+/* Extra Small Mobile (≤400px) - Slide 1, 2 & 3 Fine-tuning */
+@media (max-width: 400px) {
+
+  .slide:first-child .slide-content,
+  .slide:nth-child(2) .slide-content,
+  .slide:nth-child(3) .slide-content {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .slide:first-child h1,
+  .slide:nth-child(2) h1,
+  .slide:nth-child(3) h1 {
+    font-size: clamp(1.2rem, 5vw, 1.5rem) !important;
+  }
+
+  .slide:first-child p,
+  .slide:nth-child(2) p,
+  .slide:nth-child(3) p {
+    font-size: 0.8rem !important;
+    -webkit-line-clamp: 2;
+  }
+
+  /* Smaller frames for extra small screens */
+  .slide:first-child .artwork-frame:nth-child(1),
+  .slide:nth-child(2) .artwork-frame:nth-child(1),
+  .slide:nth-child(3) .artwork-frame:nth-child(1) {
+    width: clamp(100px, 35vw, 140px) !important;
+    height: clamp(130px, 45vw, 180px) !important;
+  }
+
+  .slide:first-child .artwork-frame:nth-child(2),
+  .slide:nth-child(2) .artwork-frame:nth-child(2),
+  .slide:nth-child(3) .artwork-frame:nth-child(2) {
+    width: clamp(95px, 33vw, 130px) !important;
+    height: clamp(120px, 42vw, 170px) !important;
+  }
+
+  .slide:first-child .frame-face,
+  .slide:nth-child(2) .frame-face,
+  .slide:nth-child(3) .frame-face {
+    border-width: 5px;
+    padding: 5px;
+  }
 }
