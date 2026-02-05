@@ -9,3 +9,4 @@ export { LiquidMorph, BlobMorph } from './LiquidMorph';
 export { ArtworkFrame } from './ArtworkFrame';
 export { useAntiGravityPhysics } from './useAntiGravityPhysics';
 export { useSpringPhysics } from './useSpringPhysics';
+export { WallPreviewPanel } from './WallPreviewPanel';

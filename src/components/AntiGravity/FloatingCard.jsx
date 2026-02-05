@@ -63,8 +63,22 @@ export const FloatingCard = ({
             onMouseMove={handleMouseMove}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={handleMouseLeave}
+            animate={{
+                y: yBounce,
+                rotate: rotateRange,
+            }}
         >
             <motion.div
+                style={enable3D ? {
+                    rotateX,
+                    rotateY,
+                    transformStyle: 'preserve-3d'
+                } : {}}
+                className="will-change-transform"
+                whileHover={{
+                    scale: 1.02,
+                    transition: { duration: 0.3 }
+                }}
                 animate={{
                     y: yBounce,
                     rotate: rotateRange,
@@ -74,12 +88,6 @@ export const FloatingCard = ({
                     repeat: Infinity,
                     ease: "easeInOut",
                 }}
-                style={enable3D ? {
-                    rotateX,
-                    rotateY,
-                    transformStyle: 'preserve-3d'
-                } : {}}
-                className="will-change-transform"
             >
                 {/* Multi-layer shadow system - Dark Mode */}
                 <motion.div

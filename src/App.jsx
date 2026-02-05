@@ -6,7 +6,8 @@ import {
   ParticleSystem,
   MagneticField,
   DynamicBackground,
-  LiquidMorph
+  LiquidMorph,
+  WallPreviewPanel
 } from './components/AntiGravity';
 import { Palette, Users, Flower2, Globe, Church, Sparkles } from 'lucide-react';
 
@@ -283,43 +284,48 @@ const containerVariants = {
   }
 };
 
-// Enhanced item animation with 3D effects
+// Enhanced item animation with varied 3D effects
 const itemVariants = {
-  hidden: {
+  hidden: (i) => ({
     opacity: 0,
-    scale: 0.8,
+    scale: 0.75,
     y: 60,
-    rotateX: -15,
+    rotateX: i % 2 === 0 ? -20 : -12,
+    rotateZ: (i % 3 === 0 ? -4 : i % 2 === 0 ? 4 : 0),
     filter: 'blur(10px)'
-  },
-  visible: {
+  }),
+  visible: (i) => ({
     opacity: 1,
     scale: 1,
     y: 0,
     rotateX: 0,
+    rotateZ: 0,
     filter: 'blur(0px)',
     transition: {
       type: "spring",
-      stiffness: 100,
-      damping: 15,
-      mass: 0.8
+      stiffness: 100 - (i % 3) * 15,
+      damping: 14 + (i % 2) * 4,
+      mass: 0.8,
+      delay: (i % 4) * 0.07
     }
-  },
-  exit: {
+  }),
+  exit: (i) => ({
     opacity: 0,
-    scale: 0.8,
-    y: -60,
-    rotateX: 15,
+    scale: 0.85,
+    y: -50,
+    rotateX: i % 2 === 0 ? 18 : 12,
+    rotateZ: (i % 3 === 0 ? 4 : -4),
     filter: 'blur(10px)',
     transition: {
       duration: 0.4,
       ease: [0.65, 0, 0.35, 1]
     }
-  }
+  })
 };
 
 export const AntiGravityGallery = () => {
   const [activeCategory, setActiveCategory] = useState('figurative');
+  const [hoveredArtwork, setHoveredArtwork] = useState(null);
 
   // Filter artworks by category
   const filteredArtworks = ARTWORKS.filter(art =>
@@ -438,6 +444,7 @@ export const AntiGravityGallery = () => {
               {filteredArtworks.map((art, index) => (
                 <motion.div
                   key={art.id}
+                  custom={index}
                   variants={itemVariants}
                   className={`${index % 2 === 0
                     ? "lg:mt-6"      // Even items go down a bit (reduced from mt-8)
@@ -455,6 +462,7 @@ export const AntiGravityGallery = () => {
                     aspectRatio={art.aspectRatio}
                     artworkUrl={art.artworkUrl}
                     depth={art.depth}
+                    onHoverStart={setHoveredArtwork}
                   />
                 </motion.div>
               ))}
@@ -481,6 +489,13 @@ export const AntiGravityGallery = () => {
             </p>
           </motion.div>
         </motion.div>
+
+        {/* Shared Wall Preview Panel */}
+        <WallPreviewPanel
+          artwork={hoveredArtwork}
+          isVisible={hoveredArtwork !== null}
+          onClose={() => setHoveredArtwork(null)}
+        />
       </div>
     </section>
   );
