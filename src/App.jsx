@@ -55,12 +55,12 @@ const ARTWORKS = [
   // Figurative
   {
     id: 1,
-    title: "Three Generation Together",
-    artist: "Arpa Mukhopadhyay",
+    title: "Owl and butterfly",
+    artist: "Tatiana Feoktistova",
     category: "Figurative",
-    src: "https://images.unsplash.com/photo-1582201942988-13e60e4556ee?auto=format&fit=crop&q=80&w=800",
+    src: "https://zigguratss.com/assets/upload/art-363.jpg",
     aspectRatio: "portrait",
-    artworkUrl: "https://zigguratss.com/artwork/painting/conceptual/figurative/acrylic/three-generation-together-nv2-1230",
+    artworkUrl: "https://zigguratss.com/artwork/painting/nature/figurative/acrylic/owl-and-butterfly-363",
     depth: 1.1
   },
   {
