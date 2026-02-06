@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, ZoomIn, X } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 
 export const WallPreviewPanel = ({ artwork, isVisible, onClose }) => {
     if (!artwork) return null;
@@ -19,28 +19,22 @@ export const WallPreviewPanel = ({ artwork, isVisible, onClose }) => {
         window.open(artworkUrl, '_blank');
     };
 
-    const handleZoom = (e) => {
-        e.stopPropagation();
-        window.open(src, '_blank');
-    };
-
     return (
         <AnimatePresence>
             {isVisible && (
                 <>
                     {/* Backdrop overlay */}
                     <motion.div
-                        className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm"
+                        className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm pointer-events-none"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.3 }}
-                        onClick={onClose}
                     />
 
                     {/* Popup preview */}
                     <motion.div
-                        className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[60] w-[90vw] max-w-sm pointer-events-auto"
+                        className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[60] w-[90vw] max-w-sm"
                         initial={{ scale: 0.5, opacity: 0, y: 100 }}
                         animate={{
                             scale: 1,
@@ -59,12 +53,13 @@ export const WallPreviewPanel = ({ artwork, isVisible, onClose }) => {
                             y: 50,
                             transition: { duration: 0.2 }
                         }}
+                        onHoverEnd={onClose}
                     >
-                        {/* Card with wall background */}
-                        <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                            {/* Beige wall background */}
+                        {/* Card with wall background - STRONG GLASSY BLUR */}
+                        <div className="relative rounded-2xl overflow-hidden shadow-2xl backdrop-blur-2xl bg-white/5 border border-white/30">
+                            {/* Beige wall background with high transparency */}
                             <div
-                                className="absolute inset-0"
+                                className="absolute inset-0 opacity-40"
                                 style={{
                                     background: 'linear-gradient(180deg, #e8e4dc 0%, #d4cfc5 50%, #c8c3b9 100%)',
                                 }}
@@ -93,22 +88,6 @@ export const WallPreviewPanel = ({ artwork, isVisible, onClose }) => {
                                     ease: "easeInOut"
                                 }}
                             />
-
-                            {/* Close button */}
-                            <motion.button
-                                className="absolute top-3 right-3 w-9 h-9 rounded-full bg-black/40 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white hover:bg-black/60 transition-colors z-10"
-                                whileHover={{ scale: 1.15, rotate: 90 }}
-                                whileTap={{ scale: 0.9 }}
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    onClose();
-                                }}
-                                initial={{ opacity: 0, rotate: -90 }}
-                                animate={{ opacity: 1, rotate: 0 }}
-                                transition={{ delay: 0.3 }}
-                            >
-                                <X className="w-5 h-5" />
-                            </motion.button>
 
                             {/* Content */}
                             <div className="relative p-6">
@@ -163,38 +142,23 @@ export const WallPreviewPanel = ({ artwork, isVisible, onClose }) => {
                                     animate={{ y: 0, opacity: 1 }}
                                     transition={{ delay: 0.4 }}
                                 >
-                                    <h3 className="text-lg font-bold text-zinc-800 mb-0.5">{title}</h3>
-                                    <p className="text-zinc-600 text-sm mb-1">by {artist}</p>
-                                    <p className="text-xs text-zinc-500 uppercase tracking-wider mb-4">{category}</p>
+                                    <h3 className="text-xl font-serif font-bold text-white mb-1 tracking-tight drop-shadow-lg">{title}</h3>
+                                    <p className="text-white/90 text-sm mb-2 font-light italic drop-shadow-md">by {artist}</p>
+                                    <p className="text-xs text-white/70 uppercase tracking-widest mb-5 font-medium drop-shadow-sm">{category}</p>
 
-                                    {/* Action buttons */}
-                                    <div className="flex items-center justify-center gap-2">
-                                        <motion.button
-                                            onClick={handleViewProject}
-                                            className="px-4 py-2 rounded-full bg-white/90 backdrop-blur-sm border border-zinc-300 text-zinc-800 text-sm font-medium hover:bg-white hover:shadow-lg transition-all shadow-md flex items-center gap-1.5"
-                                            whileHover={{ scale: 1.05, y: -2 }}
-                                            whileTap={{ scale: 0.95 }}
-                                            initial={{ y: 10, opacity: 0 }}
-                                            animate={{ y: 0, opacity: 1 }}
-                                            transition={{ delay: 0.5 }}
-                                        >
-                                            <ExternalLink className="w-3.5 h-3.5" />
-                                            <span>Details</span>
-                                        </motion.button>
-
-                                        <motion.button
-                                            onClick={handleZoom}
-                                            className="px-4 py-2 rounded-full bg-zinc-800 text-white text-sm font-medium hover:bg-zinc-700 hover:shadow-lg transition-all shadow-md flex items-center gap-1.5"
-                                            whileHover={{ scale: 1.05, y: -2 }}
-                                            whileTap={{ scale: 0.95 }}
-                                            initial={{ y: 10, opacity: 0 }}
-                                            animate={{ y: 0, opacity: 1 }}
-                                            transition={{ delay: 0.55 }}
-                                        >
-                                            <ZoomIn className="w-3.5 h-3.5" />
-                                            <span>Zoom</span>
-                                        </motion.button>
-                                    </div>
+                                    {/* Single View Details button */}
+                                    <motion.button
+                                        onClick={handleViewProject}
+                                        className="px-5 py-2.5 rounded-full bg-white/90 backdrop-blur-sm border border-zinc-300 text-zinc-800 text-sm font-medium hover:bg-white hover:shadow-lg transition-all shadow-md flex items-center gap-2 mx-auto"
+                                        whileHover={{ scale: 1.05, y: -2 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        initial={{ y: 10, opacity: 0 }}
+                                        animate={{ y: 0, opacity: 1 }}
+                                        transition={{ delay: 0.5 }}
+                                    >
+                                        <ExternalLink className="w-4 h-4" />
+                                        <span>View Full Details</span>
+                                    </motion.button>
                                 </motion.div>
                             </div>
                         </div>

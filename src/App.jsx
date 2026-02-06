@@ -478,10 +478,14 @@ export const AntiGravityGallery = () => {
           transition={{ delay: 1 }}
         >
           <motion.div
-            className="inline-block glass px-8 py-4 rounded-full"
+            className="inline-block glass px-8 py-4 rounded-full cursor-pointer"
             whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             style={{
               boxShadow: `0 10px 40px ${activeCategoryData?.glowColor || 'rgba(0,0,0,0.3)'}`
+            }}
+            onClick={() => {
+              window.open(`https://zigguratss.com/artworks/painting/${activeCategory}`, '_blank');
             }}
           >
             <p className="text-sm text-zinc-400 font-medium">
