@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, X } from 'lucide-react';
 
 // Import background images
 import portraitBg from '../../assets/potrait.png';
@@ -60,11 +60,12 @@ export const WallPreviewPanel = ({ artwork, isVisible, onClose }) => {
                 <>
                     {/* Backdrop overlay */}
                     <motion.div
-                        className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm pointer-events-none"
+                        className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm cursor-pointer"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.3 }}
+                        onClick={onClose}
                     />
 
                     {/* Popup preview */}
@@ -88,8 +89,26 @@ export const WallPreviewPanel = ({ artwork, isVisible, onClose }) => {
                             y: 50,
                             transition: { duration: 0.2 }
                         }}
-                        onHoverEnd={onClose}
                     >
+                        {/* Close button - Top Right */}
+                        <motion.button
+                            onClick={onClose}
+                            className="absolute top-4 right-4 z-[70] text-white/80 hover:text-white transition-colors group"
+                            initial={{ scale: 0, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0, opacity: 0 }}
+                            whileHover={{ scale: 1.2 }}
+                            whileTap={{ scale: 0.9 }}
+                            transition={{
+                                type: "spring",
+                                stiffness: 300,
+                                damping: 20,
+                                delay: 0.2
+                            }}
+                        >
+                            <X className="w-8 h-8 drop-shadow-lg" strokeWidth={2.5} />
+                        </motion.button>
+
                         {/* Glass card container */}
                         <div className="relative rounded-2xl overflow-hidden shadow-2xl backdrop-blur-2xl bg-white/5 border border-white/30">
                             {/* Wall scene mockup with dynamic background */}
