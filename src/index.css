@@ -51,6 +51,10 @@ body {
   overflow-x: hidden;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* Beautiful animated gradient background */
 .magic-bg {
   background:
@@ -214,23 +218,16 @@ body {
   box-shadow: 0 0 30px rgba(167, 139, 250, 0.6);
 }
 
-/* Custom scrollbar - Dark Theme */
+/* Custom scrollbar - Hidden */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  display: none;
 }
 
-::-webkit-scrollbar-track {
-  background: var(--background-dark);
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--accent-gold), var(--accent-teal));
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, var(--accent-teal), var(--accent-purple));
+body {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 /* Reduced motion support */

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, X } from 'lucide-react';
 
 // Import background images
 import portraitBg from '../../assets/potrait.png';
@@ -18,7 +18,7 @@ export const WallPreviewPanel = ({ artwork, isVisible, onClose }) => {
             bgImage: portraitBg,
             artworkWidth: '28%',
             artworkMaxWidth: '220px',
-            artworkPosition: { top: '40%', left: '45%' }
+            artworkPosition: { top: '40%', left: '50%' }
         },
         landscape: {
             bgImage: landscapeBg,
@@ -51,36 +51,37 @@ export const WallPreviewPanel = ({ artwork, isVisible, onClose }) => {
 
     const handleViewProject = (e) => {
         e.stopPropagation();
-        window.open(artworkUrl, '_blank');
+        window.location.href = artworkUrl;
     };
 
     return (
         <AnimatePresence>
-            {isVisible && (
-                <>
-                    {/* Backdrop overlay */}
-                    <motion.div
-                        className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm pointer-events-none"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                    />
-
+            {isVisible && artwork && (
+                <motion.div
+                    className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-8"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    style={{
+                        backdropFilter: 'blur(8px)',
+                        backgroundColor: 'rgba(0, 0, 0, 0.7)'
+                    }}
+                    onClick={onClose}
+                >
                     {/* Popup preview */}
                     <motion.div
-                        className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[60] w-[90vw] max-w-2xl"
-                        initial={{ scale: 0.5, opacity: 0, y: 100 }}
+                        className="relative w-[95vw] sm:w-[90vw] sm:max-w-md md:max-w-2xl"
+                        onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the panel
+                        initial={{
+                            scale: 0.8,
+                            opacity: 0,
+                            y: 50
+                        }}
                         animate={{
                             scale: 1,
                             opacity: 1,
                             y: 0,
-                            transition: {
-                                type: "spring",
-                                stiffness: 300,
-                                damping: 25,
-                                delay: 0.1
-                            }
+                            transition: { type: "spring", stiffness: 300, damping: 25 }
                         }}
                         exit={{
                             scale: 0.8,
@@ -92,6 +93,20 @@ export const WallPreviewPanel = ({ artwork, isVisible, onClose }) => {
                     >
                         {/* Glass card container */}
                         <div className="relative rounded-2xl overflow-hidden shadow-2xl backdrop-blur-2xl bg-white/5 border border-white/30">
+                            {/* Elegant close button */}
+                            <motion.button
+                                onClick={onClose}
+                                className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/60 backdrop-blur-md border border-white/50 flex items-center justify-center cursor-pointer hover:bg-black/80 transition-colors shadow-lg"
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
+                                initial={{ opacity: 0, scale: 0 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ delay: 0.2 }}
+                                aria-label="Close preview"
+                            >
+                                <X className="w-5 h-5 sm:w-6 sm:h-6 text-white" strokeWidth={2.5} />
+                            </motion.button>
+
                             {/* Wall scene mockup with dynamic background */}
                             <motion.div
                                 className="relative w-full"
@@ -198,7 +213,7 @@ export const WallPreviewPanel = ({ artwork, isVisible, onClose }) => {
                             </div>
                         </div>
                     </motion.div>
-                </>
+                </motion.div>
             )}
         </AnimatePresence>
     );

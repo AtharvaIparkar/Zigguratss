@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   AntiGravityContainer,
@@ -261,107 +261,378 @@ const ARTWORKS = [
     artworkUrl: "https://zigguratss.com/artwork/painting/religious/oil/blessed-serenity",
     depth: 1.1
   },
+
+  // More Figurative Artworks
+  {
+    id: 21,
+    title: "Portrait Study",
+    artist: "Anupam Pal",
+    category: "Figurative",
+    src: "https://images.unsplash.com/photo-1578022761742-56e5c1181047?auto=format&fit=crop&q=80&w=800",
+    aspectRatio: "portrait",
+    artworkUrl: "https://zigguratss.com/artworks/painting/figurative",
+    depth: 1.2
+  },
+  {
+    id: 22,
+    title: "Human Form",
+    artist: "Chetan Katigar",
+    category: "Figurative",
+    src: "https://images.unsplash.com/photo-1547891654-e66ed7ebb968?auto=format&fit=crop&q=80&w=800",
+    aspectRatio: "landscape",
+    artworkUrl: "https://zigguratss.com/artworks/painting/figurative",
+    depth: 0.8
+  },
+  {
+    id: 23,
+    title: "Expressions",
+    artist: "Monalisa Sarkar",
+    category: "Figurative",
+    src: "https://images.unsplash.com/photo-1537511446984-935f663eb1f4?auto=format&fit=crop&q=80&w=800",
+    aspectRatio: "portrait",
+    artworkUrl: "https://zigguratss.com/artworks/painting/figurative",
+    depth: 1.4
+  },
+  {
+    id: 24,
+    title: "Life Scenes",
+    artist: "Nandini Verma",
+    category: "Figurative",
+    src: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=800",
+    aspectRatio: "square",
+    artworkUrl: "https://zigguratss.com/artworks/painting/figurative",
+    depth: 1.1
+  },
+  {
+    id: 25,
+    title: "Urban Life",
+    artist: "Prasenjit Nath",
+    category: "Figurative",
+    src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=800",
+    aspectRatio: "landscape",
+    artworkUrl: "https://zigguratss.com/artworks/painting/figurative",
+    depth: 0.9
+  },
+  {
+    id: 26,
+    title: "Gesture Drawing",
+    artist: "Akshay Sawant",
+    category: "Figurative",
+    src: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=800",
+    aspectRatio: "portrait",
+    artworkUrl: "https://zigguratss.com/artworks/painting/figurative",
+    depth: 1.3
+  },
+  {
+    id: 27,
+    title: "Crowd Dynamics",
+    artist: "Arjun Das",
+    category: "Figurative",
+    src: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80&w=800",
+    aspectRatio: "wide",
+    artworkUrl: "https://zigguratss.com/artworks/painting/figurative",
+    depth: 1.0
+  },
+  {
+    id: 28,
+    title: "Inner Reflection",
+    artist: "Dhatri Thanki",
+    category: "Figurative",
+    src: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&q=80&w=800",
+    aspectRatio: "portrait",
+    artworkUrl: "https://zigguratss.com/artworks/painting/figurative",
+    depth: 1.2
+  },
+
+  // More Abstract Artworks
+  {
+    id: 29,
+    title: "Abstract Flow",
+    artist: "Malyadri K",
+    category: "Abstract",
+    src: "https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?auto=format&fit=crop&q=80&w=800",
+    aspectRatio: "square",
+    artworkUrl: "https://zigguratss.com/artworks/painting/abstract",
+    depth: 1.3
+  },
+  {
+    id: 30,
+    title: "Color Burst",
+    artist: "Meenu Goyal",
+    category: "Abstract",
+    src: "https://images.unsplash.com/photo-1536431311719-398b6704d4cc?auto=format&fit=crop&q=80&w=800",
+    aspectRatio: "landscape",
+    artworkUrl: "https://zigguratss.com/artworks/painting/abstract",
+    depth: 0.9
+  },
+  {
+    id: 31,
+    title: "Organic Shapes",
+    artist: "Mrinal Dutt",
+    category: "Abstract",
+    src: "https://images.unsplash.com/photo-1533158326339-7f3cf2404354?auto=format&fit=crop&q=80&w=800",
+    aspectRatio: "portrait",
+    artworkUrl: "https://zigguratss.com/artworks/painting/abstract",
+    depth: 1.4
+  },
+  {
+    id: 32,
+    title: "Motion Study",
+    artist: "Nitu Chhajer",
+    category: "Abstract",
+    src: "https://images.unsplash.com/photo-1618172193622-ae2d025f4032?auto=format&fit=crop&q=80&w=800",
+    aspectRatio: "wide",
+    artworkUrl: "https://zigguratss.com/artworks/painting/abstract",
+    depth: 1.1
+  },
+  {
+    id: 33,
+    title: "Energy Patterns",
+    artist: "Gulshan Achari",
+    category: "Abstract",
+    src: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&q=80&w=800",
+    aspectRatio: "square",
+    artworkUrl: "https://zigguratss.com/artworks/painting/abstract",
+    depth: 1.0
+  },
+  {
+    id: 34,
+    title: "Dreamscape",
+    artist: "Aniruddha Sarker",
+    category: "Abstract",
+    src: "https://images.unsplash.com/photo-1556139954-ec19cce61d61?auto=format&fit=crop&q=80&w=800",
+    aspectRatio: "landscape",
+    artworkUrl: "https://zigguratss.com/artworks/painting/abstract",
+    depth: 1.2
+  },
+  {
+    id: 35,
+    title: "Textures",
+    artist: "Ashis Mondal",
+    category: "Abstract",
+    src: "https://images.unsplash.com/photo-1549887534-1541e9326642?auto=format&fit=crop&q=80&w=800",
+    aspectRatio: "portrait",
+    artworkUrl: "https://zigguratss.com/artworks/painting/abstract",
+    depth: 0.8
+  },
+
+  // More Fine Art Artworks
+  {
+    id: 36,
+    title: "Heritage Study",
+    artist: "Sanjay Kumar",
+    category: "Fine Art",
+    src: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&q=80&w=800",
+    aspectRatio: "landscape",
+    artworkUrl: "https://zigguratss.com/artworks/painting/fine-art",
+    depth: 1.3
+  },
+  {
+    id: 37,
+    title: "Classical Realism",
+    artist: "Priya Deshmukh",
+    category: "Fine Art",
+    src: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&q=80&w=800",
+    aspectRatio: "portrait",
+    artworkUrl: "https://zigguratss.com/artworks/painting/fine-art",
+    depth: 0.9
+  },
+  {
+    id: 38,
+    title: "Still Life Grand",
+    artist: "Rajiv Sharma",
+    category: "Fine Art",
+    src: "https://images.unsplash.com/photo-1580136579312-94651dfd596d?auto=format&fit=crop&q=80&w=800",
+    aspectRatio: "square",
+    artworkUrl: "https://zigguratss.com/artworks/painting/fine-art",
+    depth: 1.1
+  },
+  {
+    id: 39,
+    title: "Museum Piece",
+    artist: "Kavita Singh",
+    category: "Fine Art",
+    src: "https://images.unsplash.com/photo-1582561833841-905fa9a0f7bf?auto=format&fit=crop&q=80&w=800",
+    aspectRatio: "landscape",
+    artworkUrl: "https://zigguratss.com/artworks/painting/fine-art",
+    depth: 1.4
+  },
+  {
+    id: 40,
+    title: "Academic Portrait",
+    artist: "Deepak Verma",
+    category: "Fine Art",
+    src: "https://images.unsplash.com/photo-1578818919176-1043deb30f8a?auto=format&fit=crop&q=80&w=800",
+    aspectRatio: "portrait",
+    artworkUrl: "https://zigguratss.com/artworks/painting/fine-art",
+    depth: 1.0
+  },
+
+  // More Aboriginal Artworks
+  {
+    id: 41,
+    title: "Dot Art",
+    artist: "Krishna Nair",
+    category: "Aboriginal",
+    src: "https://images.unsplash.com/photo-1558694640-edd997a816a7?auto=format&fit=crop&q=80&w=800",
+    aspectRatio: "square",
+    artworkUrl: "http://zigguratss.com/artworks/painting/aboriginal",
+    depth: 1.3
+  },
+  {
+    id: 42,
+    title: "Tribal Patterns",
+    artist: "Sarika Iyer",
+    category: "Aboriginal",
+    src: "https://images.unsplash.com/photo-1524784798181-33f76be7c3d1?auto=format&fit=crop&q=80&w=800",
+    aspectRatio: "landscape",
+    artworkUrl: "http://zigguratss.com/artworks/painting/aboriginal",
+    depth: 0.8
+  },
+  {
+    id: 43,
+    title: "Ancient Stories",
+    artist: "Manoj Kumar",
+    category: "Aboriginal",
+    src: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?auto=format&fit=crop&q=80&w=900",
+    aspectRatio: "portrait",
+    artworkUrl: "http://zigguratss.com/artworks/painting/aboriginal",
+    depth: 1.1
+  },
+
+  // More Religious Artworks
+  {
+    id: 44,
+    title: "Temple Art",
+    artist: "Radha Krishna",
+    category: "Religious",
+    src: "https://images.unsplash.com/photo-1545168442-2f7e9c4c8e85?auto=format&fit=crop&q=80&w=800",
+    aspectRatio: "landscape",
+    artworkUrl: "https://zigguratss.com/artworks/painting/religious",
+    depth: 1.2
+  },
+  {
+    id: 45,
+    title: "Devotion",
+    artist: "Yashoda Devi",
+    category: "Religious",
+    src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=900",
+    aspectRatio: "portrait",
+    artworkUrl: "https://zigguratss.com/artworks/painting/religious",
+    depth: 0.9
+  },
+  {
+    id: 46,
+    title: "Sacred Rituals",
+    artist: "Gopal Mishra",
+    category: "Religious",
+    src: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&q=80&w=800",
+    aspectRatio: "square",
+    artworkUrl: "https://zigguratss.com/artworks/painting/religious",
+    depth: 1.4
+  },
+  {
+    id: 47,
+    title: "Divine Grace",
+    artist: "Lakshmi Patel",
+    category: "Religious",
+    src: "https://images.unsplash.com/photo-1493836512294-502baa1986e2?auto=format&fit=crop&q=80&w=800",
+    aspectRatio: "landscape",
+    artworkUrl: "https://zigguratss.com/artworks/painting/religious",
+    depth: 1.0
+  }
 ];
 
-// Enhanced container animation
+// Simplified container animation - minimal, fast
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.06,
-      delayChildren: 0.1,
-      when: "beforeChildren"
+      staggerChildren: 0.03,
+      delayChildren: 0,
+      duration: 0.2
     }
   },
   exit: {
     opacity: 0,
-    transition: {
-      staggerChildren: 0.03,
-      staggerDirection: -1,
-      when: "afterChildren"
-    }
+    transition: { duration: 0.15 }
   }
 };
 
-// Enhanced item animation with varied 3D effects
+// Simplified item animation - no blur, minimal transforms
 const itemVariants = {
-  hidden: (i) => ({
+  hidden: {
     opacity: 0,
-    scale: 0.75,
-    y: 60,
-    rotateX: i % 2 === 0 ? -20 : -12,
-    rotateZ: (i % 3 === 0 ? -4 : i % 2 === 0 ? 4 : 0),
-    filter: 'blur(10px)'
-  }),
+    scale: 0.9,
+    y: 20
+  },
   visible: (i) => ({
     opacity: 1,
     scale: 1,
     y: 0,
-    rotateX: 0,
-    rotateZ: 0,
-    filter: 'blur(0px)',
-    transition: {
-      type: "spring",
-      stiffness: 100 - (i % 3) * 15,
-      damping: 14 + (i % 2) * 4,
-      mass: 0.8,
-      delay: (i % 4) * 0.07
-    }
-  }),
-  exit: (i) => ({
-    opacity: 0,
-    scale: 0.85,
-    y: -50,
-    rotateX: i % 2 === 0 ? 18 : 12,
-    rotateZ: (i % 3 === 0 ? 4 : -4),
-    filter: 'blur(10px)',
     transition: {
       duration: 0.4,
-      ease: [0.65, 0, 0.35, 1]
+      ease: [0.22, 1, 0.36, 1],
+      delay: (i % 12) * 0.025
     }
-  })
+  }),
+  exit: {
+    opacity: 0,
+    scale: 0.95,
+    transition: { duration: 0.2 }
+  }
 };
 
-export const AntiGravityGallery = () => {
+export const AntiGravityGallery = ({ enableBackground = false, enableParticles = false }) => {
   const [activeCategory, setActiveCategory] = useState('figurative');
   const [hoveredArtwork, setHoveredArtwork] = useState(null);
 
-  // Filter artworks by category
-  const filteredArtworks = ARTWORKS.filter(art =>
-    art.category.toLowerCase().replace(' ', '-') === activeCategory
-  );
+  // Memoize filtered artworks for performance
+  const filteredArtworks = useMemo(() => {
+    return ARTWORKS.filter(art => {
+      const categoryId = art.category.toLowerCase().replace(/\s+/g, '-');
+      return categoryId === activeCategory;
+    });
+  }, [activeCategory]);
+
+  // Memoize hover handler
+  const handleHoverStart = useCallback((artwork) => {
+    setHoveredArtwork(artwork);
+  }, []);
 
   const activeCategoryData = CATEGORIES.find(c => c.id === activeCategory);
 
   return (
-    <section className="relative py-20 px-6 min-h-screen overflow-hidden">
-      {/* Dynamic animated background */}
-      <DynamicBackground />
+    <section className="relative py-8 sm:py-12 md:py-16 min-h-screen overflow-hidden">
+      {/* Optional animated background */}
+      {enableBackground && <DynamicBackground />}
 
-      {/* Particle system */}
-      <ParticleSystem particleCount={60} types={['dust', 'star', 'orb']} />
+      {/* Optional particle system */}
+      {enableParticles && <ParticleSystem particleCount={40} types={['dust', 'star']} />}
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="w-[95vw] sm:max-w-[90vw] mx-auto relative z-10 px-3 sm:px-4">
 
-        {/* Enhanced Header with gradient text */}
+        {/* Enhanced Header with elegant serif typography */}
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: -40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight mb-6">
-            <span className="gradient-text">
-              Artworks As Per Style
-            </span>
+
+          {/* Main heading with elegant bold serif font */}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-extrabold tracking-normal mb-4 sm:mb-6 text-white px-4" style={{ letterSpacing: '-0.02em' }}>
+            Artworks By Style
           </h1>
 
+          {/* Small caps subtitle */}
           <motion.p
-            className="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto font-light leading-relaxed"
+            className="text-xs sm:text-sm md:text-base tracking-[0.2em] sm:tracking-[0.3em] mb-3 sm:mb-4 px-4"
+            style={{ color: '#C9A04B' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
+            transition={{ delay: 0.2 }}
           >
             Artworks we offer as per their style!
           </motion.p>
@@ -370,7 +641,7 @@ export const AntiGravityGallery = () => {
         {/* Enhanced Category Filter Pills with Magnetic Field */}
         <MagneticField strength={0.15} radius={80}>
           <motion.div
-            className="flex flex-wrap items-center justify-center gap-3 mb-16"
+            className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 md:gap-5 mb-12 sm:mb-16 px-2 sm:px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -393,7 +664,8 @@ export const AntiGravityGallery = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.05 }}
                   style={isActive ? {
-                    boxShadow: `0 10px 40px ${cat.glowColor}`
+                    background: `linear-gradient(to right, ${cat.gradient.split('from-')[1].split(' ')[0]}, ${cat.gradient.split('to-')[1]})`,
+                    boxShadow: `0 0 20px ${cat.glowColor}`
                   } : {}}
                 >
                   {isActive && (
@@ -432,26 +704,24 @@ export const AntiGravityGallery = () => {
 
         {/* Gallery Grid with Liquid Morph Transitions */}
         <AntiGravityContainer>
-          <LiquidMorph morphKey={activeCategory}>
+          <AnimatePresence mode="wait">
             <motion.div
               key={activeCategory}
               variants={containerVariants}
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 lg:gap-10 perspective-1200"
+              className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-x-4 sm:gap-x-6 md:gap-x-8 lg:gap-x-12 perspective-1200"
             >
               {filteredArtworks.map((art, index) => (
                 <motion.div
                   key={art.id}
                   custom={index}
                   variants={itemVariants}
-                  className={`${index % 2 === 0
-                    ? "lg:mt-6"      // Even items go down a bit (reduced from mt-8)
-                    : index % 3 === 0
-                      ? "lg:mt-0"    // Every 3rd odd item stays neutral (changed from -mt-4)
-                      : "lg:mt-2"    // Other odd items go down slightly
-                    }`}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-100px", amount: 0.3 }}
+                  className="relative mb-6 lg:mb-8 break-inside-avoid"
                 >
                   <FloatingImage
                     src={art.src}
@@ -462,12 +732,12 @@ export const AntiGravityGallery = () => {
                     aspectRatio={art.aspectRatio}
                     artworkUrl={art.artworkUrl}
                     depth={art.depth}
-                    onHoverStart={setHoveredArtwork}
+                    onHoverStart={handleHoverStart}
                   />
                 </motion.div>
               ))}
             </motion.div>
-          </LiquidMorph>
+          </AnimatePresence>
         </AntiGravityContainer>
 
         {/* Enhanced Stats Counter with glow */}
@@ -485,7 +755,7 @@ export const AntiGravityGallery = () => {
               boxShadow: `0 10px 40px ${activeCategoryData?.glowColor || 'rgba(0,0,0,0.3)'}`
             }}
             onClick={() => {
-              window.open(`https://zigguratss.com/artworks/painting/${activeCategory}`, '_blank');
+              window.location.href = `https://zigguratss.com/artworks/painting/${activeCategory}`;
             }}
           >
             <p className="text-sm text-zinc-400 font-medium">

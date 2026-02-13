@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { FloatingCard } from './FloatingCard';
 import { motion } from 'framer-motion';
 
-export const FloatingImage = ({
+export const FloatingImage = React.memo(({
     src,
     alt,
     title,
@@ -11,11 +11,11 @@ export const FloatingImage = ({
     artworkUrl,
     aspectRatio = "landscape",
     depth = 1,
-    className = "",
-    delay = 0,
-    onHoverStart,
-    onHoverEnd
+    onHoverStart
 }) => {
+    const [isLoaded, setIsLoaded] = useState(false);
+    const ref = useRef(null);
+
     const aspectClasses = {
         landscape: "aspect-[4/3]",
         portrait: "aspect-[3/4]",
@@ -24,15 +24,15 @@ export const FloatingImage = ({
     };
 
     return (
-        <FloatingCard depth={depth} className={className} delay={delay}>
+        <FloatingCard depth={depth} delay={0}>
             <motion.div
+                ref={ref}
                 className="relative rounded-lg overflow-hidden group/img cursor-pointer"
                 onHoverStart={() => onHoverStart?.({ src, alt, title, artist, category, artworkUrl, aspectRatio })}
                 whileHover={{
                     scale: 1.03,
                     y: -5,
-                    rotateY: 2,
-                    transition: { duration: 0.4 }
+                    transition: { duration: 0.3 }
                 }}
                 style={{
                     boxShadow: "0 8px 30px rgba(0,0,0,0.3)"
@@ -54,19 +54,20 @@ export const FloatingImage = ({
                             <motion.img
                                 src={src}
                                 alt={alt}
+                                loading="lazy"
                                 className="w-full h-full object-cover"
-                                whileHover={{ scale: 1.1, rotate: 1 }}
-                                transition={{ duration: 0.7, ease: "easeOut" }}
+                                onLoad={() => setIsLoaded(true)}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: isLoaded ? 1 : 0 }}
+                                transition={{ duration: 0.3 }}
+                                whileHover={{ scale: 1.08 }}
                             />
 
                             {/* Gradient overlay */}
                             <div
                                 className="absolute inset-0 opacity-0 group-hover/img:opacity-100 transition-opacity duration-500 pointer-events-none"
                                 style={{
-                                    background: `
-                                        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08) 0%, transparent 50%),
-                                        linear-gradient(135deg, ${getCategoryGradient(category)}, transparent 60%)
-                                    `,
+                                    background: `linear-gradient(135deg, ${getCategoryGradient(category)}, transparent 60%)`,
                                     mixBlendMode: 'soft-light'
                                 }}
                             />
@@ -81,15 +82,17 @@ export const FloatingImage = ({
             </motion.div>
         </FloatingCard>
     );
-};
+});
+
+FloatingImage.displayName = 'FloatingImage';
 
 const getCategoryGradient = (category) => {
     const gradients = {
-        'Figurative': 'rgba(245, 158, 11, 0.8), rgba(217, 119, 6, 0.8)',
-        'Abstract': 'rgba(168, 85, 247, 0.8), rgba(126, 34, 206, 0.8)',
-        'Fine Art': 'rgba(20, 184, 166, 0.8), rgba(13, 148, 136, 0.8)',
-        'Aboriginal': 'rgba(249, 115, 22, 0.8), rgba(234, 88, 12, 0.8)',
-        'Religious': 'rgba(244, 63, 94, 0.8), rgba(225, 29, 72, 0.8)',
+        'Figurative': 'rgba(245, 158, 11, 0.6), rgba(217, 119, 6, 0.6)',
+        'Abstract': 'rgba(168, 85, 247, 0.6), rgba(126, 34, 206, 0.6)',
+        'Fine Art': 'rgba(20, 184, 166, 0.6), rgba(13, 148, 136, 0.6)',
+        'Aboriginal': 'rgba(249, 115, 22, 0.6), rgba(234, 88, 12, 0.6)',
+        'Religious': 'rgba(244, 63, 94, 0.6), rgba(225, 29, 72, 0.6)',
     };
-    return gradients[category] || 'rgba(113, 113, 122, 0.8), rgba(82, 82, 91, 0.8)';
+    return gradients[category] || 'rgba(113, 113, 122, 0.6), rgba(82, 82, 91, 0.6)';
 };
