@@ -6,10 +6,9 @@ import {
   ParticleSystem,
   MagneticField,
   DynamicBackground,
-  LiquidMorph,
   WallPreviewPanel
 } from './components/AntiGravity';
-import { Palette, Users, Flower2, Globe, Church, Sparkles } from 'lucide-react';
+import { Palette, Users, Flower2, Globe, Church } from 'lucide-react';
 
 // Category definitions with enhanced gradients
 const CATEGORIES = [
@@ -65,494 +64,480 @@ const ARTWORKS = [
   },
   {
     id: 2,
-    title: "Silent Contemplation",
-    artist: "Maya Singh",
+    title: "Fulrani",
+    artist: "Priyanka",
     category: "Figurative",
-    src: "https://images.unsplash.com/photo-1561214115-f2f134cc4912?auto=format&fit=crop&q=80&w=800",
+    src: "https://zigguratss.com/assets/upload/art-403.jpg",
     aspectRatio: "square",
-    artworkUrl: "https://zigguratss.com/artwork/painting/figurative/oil/silent-contemplation",
+    artworkUrl: "https://zigguratss.com/artwork/painting/nature/figurative/acrylic-/fulrani-403",
     depth: 0.9
   },
   {
     id: 3,
-    title: "Dancing Souls",
-    artist: "Rajesh Kumar",
+    title: "Tune Of Bengal-4",
+    artist: "Sekhar Roy",
     category: "Figurative",
-    src: "https://images.unsplash.com/photo-1536924940846-227afb31e2a5?auto=format&fit=crop&q=80&w=800",
+    src: "https://zigguratss.com/assets/upload/art/zigguratss_5dbfcd64373d3847ed08dd0d7516244a.jpg",
     aspectRatio: "landscape",
-    artworkUrl: "https://zigguratss.com/artwork/painting/figurative/acrylic/dancing-souls",
+    artworkUrl: "https://zigguratss.com/artwork/painting/everyday-life/figurative/acrylic-on-canvas/tune-of-bengal-4-1464",
     depth: 1.3
   },
   {
     id: 4,
-    title: "Urban Stories",
-    artist: "Priya Sharma",
+    title: "AN ODE TO BEAUTY",
+    artist: "PANCHU GHARAMI",
     category: "Figurative",
-    src: "https://images.unsplash.com/photo-1594834801821-8c2e75c0e320?auto=format&fit=crop&q=80&w=800",
+    src: "https://zigguratss.com/assets/upload/art/zigguratss_7ac6af7bce41c5be521544f5086a9c5e.jpg",
     aspectRatio: "portrait",
-    artworkUrl: "https://zigguratss.com/artwork/painting/figurative/mixed-media/urban-stories",
+    artworkUrl: "https://zigguratss.com/artwork/painting/realism/figurative/acrylic-on-canvas/an-ode-to-beauty-1435",
     depth: 1.0
+  },
+  {
+    id: 21,
+    title: "The Indian Couple",
+    artist: "Arpa Mukhopadhyay",
+    category: "Figurative",
+    src: "https://zigguratss.com/assets/upload/art-1163.jpg",
+    aspectRatio: "portrait",
+    artworkUrl: "https://zigguratss.com/artwork/painting/everyday-life/figurative/acrylic/the-indian-couple",
+    depth: 1.2
+  },
+  {
+    id: 23,
+    title: "BEAUTY WITH AUTHENTICS LIGHT",
+    artist: "PANCHU GHARAM",
+    category: "Figurative",
+    src: "https://zigguratss.com/assets/upload/art/zigguratss_90a3b8fbda3d85b6336555365d7b0970.jpg",
+    aspectRatio: "landscape",
+    artworkUrl: "https://zigguratss.com/artwork/painting/other/figurative/acrylic-on-canvas/beauty-with-authentics-light-1430",
+    depth: 0.8
+  },
+  {
+    id: 22,
+    title: "Inner Peace 6",
+    artist: "Monalisa Sarkar Mitra",
+    category: "Figurative",
+    src: "https://zigguratss.com/assets/upload/art/zigguratss_2e117665f770e68eb2fa1eeb07bdc185.jpg",
+    aspectRatio: "portrait",
+    artworkUrl: "https://zigguratss.com/artwork/painting/everyday-life/figurative/acrylic-on-canvas/inner-peace-6-",
+    depth: 1.4
+  },
+  {
+    id: 24,
+    title: "Eternal Grace",
+    artist: "Priyanka Bardhan",
+    category: "Figurative",
+    src: "https://zigguratss.com/assets/upload/art/zigguratss_40ab5c59106bbfaa3de56dc5194fcfc0.jpeg",
+    aspectRatio: "square",
+    artworkUrl: "https://zigguratss.com/artwork/painting/abstract-expressionism/figurative/acrylic-and-oil/eternal-grace",
+    depth: 1.1
+  },
+  {
+    id: 25,
+    title: "THE RIVER BANK",
+    artist: "Madhushree Pawar",
+    category: "Figurative",
+    src: "https://zigguratss.com/assets/upload/art/zigguratss_55e28592c1ccdb68912562fb15baf794.webp",
+    aspectRatio: "landscape",
+    artworkUrl: "https://zigguratss.com/artwork/painting/landscape/fine-art/watercolor/the-river-bank--1456",
+    depth: 0.9
+  },
+  {
+    id: 26,
+    title: "Spiritual Sprit..",
+    artist: "Vivek Kisan Vadkar",
+    category: "Figurative",
+    src: "https://zigguratss.com/assets/upload/art/zigguratss_ad1a43d77de7848d0ca95494da23a551.jpg",
+    aspectRatio: "portrait",
+    artworkUrl: "https://zigguratss.com/artwork/painting/animal/fine-art/oil/spiritual-sprit--1451",
+    depth: 1.3
+  },
+  {
+    id: 27,
+    title: "meeting 2",
+    artist: "UTTAM MANNA",
+    category: "Figurative",
+    src: "https://zigguratss.com/assets/upload/art-1247.jpg",
+    aspectRatio: "wide",
+    artworkUrl: "https://zigguratss.com/artwork/painting/animal/figurative/acrylic/meeting-2-1247",
+    depth: 1.0
+  },
+  {
+    id: 28,
+    title: "SADHU 2",
+    artist: "PANCHU GHARAMI",
+    category: "Figurative",
+    src: "https://zigguratss.com/assets/upload/art/zigguratss_a09b9204318463594bfffdf2024381a4.jpg",
+    aspectRatio: "portrait",
+    artworkUrl: "https://zigguratss.com/artwork/painting/religious/religious/acrylic-on-canvas/sadhu-2-1448",
+    depth: 1.2
   },
 
   // Abstract
   {
     id: 5,
-    title: "Color Symphony",
-    artist: "Vikram Patel",
+    title: "Nature",
+    artist: "Dnyaneshwar dhavale",
     category: "Abstract",
-    src: "https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&q=80&w=800",
+    src: "https://zigguratss.com/assets/upload/art-1331.jpg",
     aspectRatio: "square",
-    artworkUrl: "https://zigguratss.com/artwork/painting/abstract/acrylic/color-symphony",
+    artworkUrl: "https://zigguratss.com/artwork/painting/abstraction/abstract/acrylic-on-canvas/nature-1331",
     depth: 1.2
   },
   {
     id: 6,
-    title: "Fluid Dynamics",
-    artist: "Aisha Khan",
+    title: "Nisarg",
+    artist: "Dnyaneshwar dhavale",
     category: "Abstract",
-    src: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&q=80&w=800",
+    src: "https://zigguratss.com/assets/upload/art-1332.jpg",
     aspectRatio: "landscape",
-    artworkUrl: "https://zigguratss.com/artwork/painting/abstract/watercolor/fluid-dynamics",
+    artworkUrl: "https://zigguratss.com/artwork/painting/abstraction/abstract/acrylic-on-canvas/nisarg-1332",
     depth: 0.8
   },
   {
     id: 7,
-    title: "Geometric Harmony",
-    artist: "Sandeep Roy",
+    title: "Lord Buddha and the water droplets",
+    artist: "Nandini Saha Ghosh",
     category: "Abstract",
-    src: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?auto=format&fit=crop&q=80&w=800",
+    src: "https://zigguratss.com/assets/upload/art-1269.jpg",
     aspectRatio: "portrait",
-    artworkUrl: "https://zigguratss.com/artwork/painting/abstract/oil/geometric-harmony",
+    artworkUrl: "https://zigguratss.com/artwork/painting/religious/abstract/acrylic-/lord-buddha-and-the-water-droplets--1269",
     depth: 1.4
   },
   {
     id: 8,
-    title: "Vibrant Chaos",
-    artist: "Neha Gupta",
+    title: "PEACEFUL MOSEY",
+    artist: "Madhushree Pawar",
     category: "Abstract",
-    src: "https://images.unsplash.com/photo-1615184697985-c9bde1b07da7?auto=format&fit=crop&q=80&w=800",
+    src: "https://zigguratss.com/assets/upload/art/zigguratss_9f22ef5c72a65798868da19df3215a24.webp",
     aspectRatio: "wide",
-    artworkUrl: "https://zigguratss.com/artwork/painting/abstract/acrylic/vibrant-chaos",
+    artworkUrl: "https://zigguratss.com/artwork/painting/landscape/surrealism/acrylic/peaceful-mosey--1454",
     depth: 1.1
+  },
+  {
+    id: 29,
+    title: "Harmonious Interplay VIII",
+    artist: "Bappaditya Roy Chowdhury",
+    category: "Abstract",
+    src: "https://zigguratss.com/assets/upload/art-1256.jpg",
+    aspectRatio: "square",
+    artworkUrl: "https://zigguratss.com/artwork/painting/abstraction/abstract/acrylic/harmonious-interplay-viii-1256",
+    depth: 1.3
+  },
+  {
+    id: 30,
+    title: "Held in Time",
+    artist: "Richard Anbudurai ",
+    category: "Abstract",
+    src: "https://res.cloudinary.com/dp2e8mfvm/image/upload/v1756401274/kndry1ysa7xxwsr1kg3q.jpg",
+    aspectRatio: "landscape",
+    artworkUrl: "https://zigguratss.com/artwork/painting/abstract-expressionism/abstract/canvas/held-in-time-1385",
+    depth: 0.9
+  },
+  {
+    id: 31,
+    title: "Untitled 2017",
+    artist: "Parag Vanarse",
+    category: "Abstract",
+    src: "https://zigguratss.com/assets/upload/art-1015.jpg",
+    aspectRatio: "portrait",
+    artworkUrl: "https://zigguratss.com/artwork/painting/abstraction/cubism/oil-on-canvas/untitled-2017-1015",
+    depth: 1.4
+  },
+  {
+    id: 32,
+    title: "Harmonious Interplay IX",
+    artist: "Bappaditya Roy Chowdhury",
+    category: "Abstract",
+    src: "https://zigguratss.com/assets/upload/art-1257.jpg",
+    aspectRatio: "square",
+    artworkUrl: "https://zigguratss.com/artwork/painting/abstraction/abstract/acrylic/harmonious-interplay-ix-1257",
+    depth: 1.1
+  },
+  {
+    id: 33,
+    title: "Harmonious Interplay VII",
+    artist: "Bappaditya Roy Chowdhury",
+    category: "Abstract",
+    src: "https://zigguratss.com/assets/upload/art-1255.jpg",
+    aspectRatio: "square",
+    artworkUrl: "https://zigguratss.com/artwork/painting/abstraction/abstract/acrylic/harmonious-interplay-vii-1255",
+    depth: 1.0
+  },
+  {
+    id: 34,
+    title: "WEST SIDE 1",
+    artist: "Sambhu Karmakar",
+    category: "Abstract",
+    src: "https://zigguratss.com/assets/upload/art-1098.jpg",
+    aspectRatio: "landscape",
+    artworkUrl: "https://zigguratss.com/artwork/painting/abstraction/abstract/acrylic-on-paper/west-side-1-1098",
+    depth: 1.2
+  },
+  {
+    id: 35,
+    title: "Inspiration-II",
+    artist: "Pradip Sarkar",
+    category: "Abstract",
+    src: "https://zigguratss.com/assets/upload/art-1004.jpg",
+    aspectRatio: "portrait",
+    artworkUrl: "https://zigguratss.com/artwork/painting/abstraction/geometric/acrylicon-canvas/inspiration-ii-1004",
+    depth: 0.8
   },
 
   // Fine Art
   {
     id: 9,
-    title: "Classical Beauty",
-    artist: "Deepak Mehta",
+    title: "Serenity - River with ducks in the sunset",
+    artist: "Nandini Saha Ghosh",
     category: "Fine Art",
-    src: "https://images.unsplash.com/photo-1547891301-14c1cc35667e?auto=format&fit=crop&q=80&w=800",
+    src: "https://zigguratss.com/assets/upload/art/zigguratss_fcb0d2af0d88ddfd97d68697c71143e4.webp",
     aspectRatio: "portrait",
-    artworkUrl: "https://zigguratss.com/artwork/painting/fine-art/oil/classical-beauty",
+    artworkUrl: "https://zigguratss.com/artwork/painting/landscape/fine-art/acrylic-/serenity---river-with-ducks-in-the-sunset--1477",
     depth: 1.3
   },
   {
     id: 10,
-    title: "Renaissance Echo",
-    artist: "Kavita Desai",
+    title: "THE RIVER BANK",
+    artist: "Madhushree Pawar",
     category: "Fine Art",
-    src: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=800",
+    src: "https://zigguratss.com/assets/upload/art/zigguratss_55e28592c1ccdb68912562fb15baf794.webp",
     aspectRatio: "landscape",
-    artworkUrl: "https://zigguratss.com/artwork/painting/fine-art/oil/renaissance-echo",
+    artworkUrl: "https://zigguratss.com/artwork/painting/landscape/fine-art/watercolor-/the-river-bank--1456",
     depth: 0.9
   },
   {
     id: 11,
-    title: "Timeless Elegance",
-    artist: "Amit Verma",
+    title: "Serenity -riverside",
+    artist: "Nandini Saha Ghosh",
     category: "Fine Art",
-    src: "https://images.unsplash.com/photo-1577083552431-6e5fd01c3391?auto=format&fit=crop&q=80&w=800",
+    src: "https://zigguratss.com/assets/upload/art/image_68d1653592424.jpg",
     aspectRatio: "square",
-    artworkUrl: "https://zigguratss.com/artwork/painting/fine-art/acrylic/timeless-elegance",
+    artworkUrl: "https://zigguratss.com/artwork/painting/landscape/fine-art/acrylic-/serenity--riverside-1401",
     depth: 1.2
   },
   {
     id: 12,
-    title: "Masterpiece Detail",
-    artist: "Sonal Reddy",
+    title: "The Abandoned Ship",
+    artist: "Nandini Saha Ghosh",
     category: "Fine Art",
-    src: "https://images.unsplash.com/photo-1564399580075-5dfe19c205f3?auto=format&fit=crop&q=80&w=800",
+    src: "https://zigguratss.com/assets/upload/art/IMG20251004135250~2_691d4dcf4a798.jpg",
     aspectRatio: "portrait",
-    artworkUrl: "https://zigguratss.com/artwork/painting/fine-art/oil/masterpiece-detail",
+    artworkUrl: "https://zigguratss.com/artwork/painting/everyday-life/fine-art/acrylic-/the-abandoned-ship-1420",
+    depth: 1.0
+  },
+  {
+    id: 36,
+    title: "SPRINKLES",
+    artist: "Madhushree Pawar",
+    category: "Fine Art",
+    src: "https://zigguratss.com/assets/upload/art/zigguratss_e99fbad05682ea381bcb78914fa8773f.webp",
+    aspectRatio: "landscape",
+    artworkUrl: "https://zigguratss.com/artwork/painting/nature/fine-art/watercolor-/sprinkles--1455",
+    depth: 1.3
+  },
+  {
+    id: 37,
+    title: "Goucho",
+    artist: "Sanjana Patel",
+    category: "Fine Art",
+    src: "https://zigguratss.com/assets/upload/art/Goucho_68d6bdfcba04b.jpg",
+    aspectRatio: "portrait",
+    artworkUrl: "https://zigguratss.com/artwork/painting/religion/fine-art/acrylics-on-canvas/goucho-1405",
+    depth: 0.9
+  },
+  {
+    id: 38,
+    title: "Autumn",
+    artist: "Sanjana Patel",
+    category: "Fine Art",
+    src: "https://res.cloudinary.com/dp2e8mfvm/image/upload/v1756894643/c28jtrmuz3lya0v9vqhe.jpg",
+    aspectRatio: "square",
+    artworkUrl: "https://zigguratss.com/artwork/painting/nature/fine-art/acrylics-on-canvas/autumn",
+    depth: 1.1
+  },
+  {
+    id: 39,
+    title: "legacy in motion",
+    artist: "Vivek Kisan Vadkar",
+    category: "Fine Art",
+    src: "https://zigguratss.com/assets/upload/art/zigguratss_1b20b31ae44de87d6c06beb0496d2c14.jpg",
+    aspectRatio: "landscape",
+    artworkUrl: "https://zigguratss.com/artwork/painting/animal/fine-art/oil-on-canvas/legacy-in-motion-1450",
+    depth: 1.4
+  },
+  {
+    id: 40,
+    title: "Serenity -balcony",
+    artist: "Nandini Saha Ghosh",
+    category: "Fine Art",
+    src: "https://zigguratss.com/assets/upload/art/image_68d165ce35701.jpg",
+    aspectRatio: "portrait",
+    artworkUrl: "https://zigguratss.com/artwork/painting/landscape/fine-art/acrylic-/serenity--balcony--1402",
     depth: 1.0
   },
 
   // Aboriginal
   {
     id: 13,
-    title: "Dreamtime Stories",
-    artist: "Ravi Nair",
+    title: "Midnight Guwahati 2",
+    artist: "Dnyaneshwar dhavale",
     category: "Aboriginal",
-    src: "https://images.unsplash.com/photo-1515405295579-ba7b45403062?auto=format&fit=crop&q=80&w=800",
+    src: "https://zigguratss.com/assets/upload/art-1190.jpg",
     aspectRatio: "landscape",
-    artworkUrl: "https://zigguratss.com/artwork/painting/aboriginal/dot-painting/dreamtime-stories",
+    artworkUrl: "https://zigguratss.com/artwork/painting/abstraction/aboriginal/acrylic-on-canvas/midnight-guwahati-2-1190",
     depth: 1.1
   },
   {
     id: 14,
-    title: "Ancestral Patterns",
-    artist: "Meera Iyer",
+    title: "Croon",
+    artist: "Chetan Katigar",
     category: "Aboriginal",
-    src: "https://images.unsplash.com/photo-1513682121497-80211f36a7d3?auto=format&fit=crop&q=80&w=800",
+    src: "https://zigguratss.com/assets/upload/art-1072.jpg",
     aspectRatio: "square",
-    artworkUrl: "https://zigguratss.com/artwork/painting/aboriginal/acrylic/ancestral-patterns",
+    artworkUrl: "https://zigguratss.com/artwork/painting/abstraction/aboriginal/acrylic/croon-1072",
     depth: 1.4
   },
   {
     id: 15,
-    title: "Sacred Symbols",
-    artist: "Ankit Joshi",
+    title: "Madhubani Fishes-III",
+    artist: "Dhatri Deval Thanki",
     category: "Aboriginal",
-    src: "https://images.unsplash.com/photo-1578301978162-7aae4d755744?auto=format&fit=crop&q=80&w=800",
+    src: "https://zigguratss.com/assets/upload/art-1180.jpg",
     aspectRatio: "portrait",
-    artworkUrl: "https://zigguratss.com/artwork/painting/aboriginal/natural-pigments/sacred-symbols",
+    artworkUrl: "https://zigguratss.com/artwork/painting/animal/aboriginal/chitrapat-paper/madhubani-fishes-iii-1180",
     depth: 0.8
   },
   {
     id: 16,
-    title: "Earth Connection",
-    artist: "Pooja Malhotra",
+    title: "Energetic Bull",
+    artist: "Anupam Pal",
     category: "Aboriginal",
-    src: "https://images.unsplash.com/photo-1579541814924-49fef5b2c087?auto=format&fit=crop&q=80&w=800",
+    src: "https://zigguratss.com/assets/upload/art-1017.jpg",
     aspectRatio: "wide",
-    artworkUrl: "https://zigguratss.com/artwork/painting/aboriginal/mixed-media/earth-connection",
+    artworkUrl: "https://zigguratss.com/artwork/painting/animal/aboriginal/acrylic-on-canvas/energetic-bull-1017",
     depth: 1.2
+  },
+  {
+    id: 41,
+    title: "Yellow",
+    artist: "Dnyaneshwar dhavale",
+    category: "Aboriginal",
+    src: "https://zigguratss.com/assets/upload/art-910.jpg",
+    aspectRatio: "square",
+    artworkUrl: "https://zigguratss.com/artwork/painting/abstraction/aboriginal/acrylic-on-canvas/yellow-910",
+    depth: 1.3
+  },
+  {
+    id: 42,
+    title: "Sunset on the lake",
+    artist: "Vanya Georgieva",
+    category: "Aboriginal",
+    src: "https://zigguratss.com/assets/upload/art-950.jpeg",
+    aspectRatio: "landscape",
+    artworkUrl: "https://zigguratss.com/artwork/painting/landscape/aboriginal/oil-/sunset-on-the-lake-",
+    depth: 0.8
+  },
+  {
+    id: 43,
+    title: "Madhubani Fishes-II",
+    artist: "Dhatri Deval Thanki",
+    category: "Aboriginal",
+    src: "https://zigguratss.com/assets/upload/art-1179.jpg",
+    aspectRatio: "portrait",
+    artworkUrl: "https://zigguratss.com/artwork/painting/animal/aboriginal/chitrapat-paper/madhubani-fishes-ii-1179",
+    depth: 1.1
   },
 
   // Religious
   {
     id: 17,
-    title: "Divine Light",
-    artist: "Kiran Rao",
+    title: "SADHU 2",
+    artist: "PANCHU GHARAMI",
     category: "Religious",
-    src: "https://images.unsplash.com/photo-1544967082-d9d25d867d66?auto=format&fit=crop&q=80&w=800",
+    src: "https://zigguratss.com/assets/upload/art/zigguratss_a09b9204318463594bfffdf2024381a4.jpg",
     aspectRatio: "portrait",
-    artworkUrl: "https://zigguratss.com/artwork/painting/religious/oil/divine-light",
+    artworkUrl: "https://zigguratss.com/artwork/painting/religious/religious/acrylic-on-canvas/sadhu-2-1448",
     depth: 1.0
   },
   {
     id: 18,
-    title: "Sacred Moments",
-    artist: "Aditi Kapoor",
+    title: "GANESHA",
+    artist: "PANCHU GHARAMI",
     category: "Religious",
-    src: "https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?auto=format&fit=crop&q=80&w=800",
+    src: "https://zigguratss.com/assets/upload/art/zigguratss_19061eb75ef9d312040349e342b1b772.jpg",
     aspectRatio: "landscape",
-    artworkUrl: "https://zigguratss.com/artwork/painting/religious/acrylic/sacred-moments",
+    artworkUrl: "https://zigguratss.com/artwork/painting/religious/religious/acrylic-on-canvas/ganesha-1446",
     depth: 1.3
   },
   {
     id: 19,
-    title: "Spiritual Journey",
-    artist: "Rohit Bhatt",
+    title: "Buddha",
+    artist: "Sangita agarwal",
     category: "Religious",
-    src: "https://images.unsplash.com/photo-1595436172532-5c8c37e30eb4?auto=format&fit=crop&q=80&w=800",
+    src: "https://zigguratss.com/assets/upload/art/zigguratss_9c4bd41b050f12541de0ce1bd10a0714.jpg",
     aspectRatio: "square",
-    artworkUrl: "https://zigguratss.com/artwork/painting/religious/tempera/spiritual-journey",
+    artworkUrl: "https://zigguratss.com/artwork/painting/religious/religious/acrylic-/buddha-1428",
     depth: 0.9
   },
   {
     id: 20,
-    title: "Blessed Serenity",
-    artist: "Nisha Chopra",
+    title: "GANESHA",
+    artist: "PANCHU GHARAMI",
     category: "Religious",
-    src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=800",
+    src: "https://zigguratss.com/assets/upload/art/zigguratss_3e9b904a3d23f0296145e81ab0d45bff.jpg",
     aspectRatio: "portrait",
-    artworkUrl: "https://zigguratss.com/artwork/painting/religious/oil/blessed-serenity",
+    artworkUrl: "https://zigguratss.com/artwork/painting/religious/religious/acrylic-on-canvas/ganesha-1445",
     depth: 1.1
   },
-
-  // More Figurative Artworks
-  {
-    id: 21,
-    title: "Portrait Study",
-    artist: "Anupam Pal",
-    category: "Figurative",
-    src: "https://images.unsplash.com/photo-1578022761742-56e5c1181047?auto=format&fit=crop&q=80&w=800",
-    aspectRatio: "portrait",
-    artworkUrl: "https://zigguratss.com/artworks/painting/figurative",
-    depth: 1.2
-  },
-  {
-    id: 22,
-    title: "Human Form",
-    artist: "Chetan Katigar",
-    category: "Figurative",
-    src: "https://images.unsplash.com/photo-1547891654-e66ed7ebb968?auto=format&fit=crop&q=80&w=800",
-    aspectRatio: "landscape",
-    artworkUrl: "https://zigguratss.com/artworks/painting/figurative",
-    depth: 0.8
-  },
-  {
-    id: 23,
-    title: "Expressions",
-    artist: "Monalisa Sarkar",
-    category: "Figurative",
-    src: "https://images.unsplash.com/photo-1537511446984-935f663eb1f4?auto=format&fit=crop&q=80&w=800",
-    aspectRatio: "portrait",
-    artworkUrl: "https://zigguratss.com/artworks/painting/figurative",
-    depth: 1.4
-  },
-  {
-    id: 24,
-    title: "Life Scenes",
-    artist: "Nandini Verma",
-    category: "Figurative",
-    src: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=800",
-    aspectRatio: "square",
-    artworkUrl: "https://zigguratss.com/artworks/painting/figurative",
-    depth: 1.1
-  },
-  {
-    id: 25,
-    title: "Urban Life",
-    artist: "Prasenjit Nath",
-    category: "Figurative",
-    src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=800",
-    aspectRatio: "landscape",
-    artworkUrl: "https://zigguratss.com/artworks/painting/figurative",
-    depth: 0.9
-  },
-  {
-    id: 26,
-    title: "Gesture Drawing",
-    artist: "Akshay Sawant",
-    category: "Figurative",
-    src: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=800",
-    aspectRatio: "portrait",
-    artworkUrl: "https://zigguratss.com/artworks/painting/figurative",
-    depth: 1.3
-  },
-  {
-    id: 27,
-    title: "Crowd Dynamics",
-    artist: "Arjun Das",
-    category: "Figurative",
-    src: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80&w=800",
-    aspectRatio: "wide",
-    artworkUrl: "https://zigguratss.com/artworks/painting/figurative",
-    depth: 1.0
-  },
-  {
-    id: 28,
-    title: "Inner Reflection",
-    artist: "Dhatri Thanki",
-    category: "Figurative",
-    src: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&q=80&w=800",
-    aspectRatio: "portrait",
-    artworkUrl: "https://zigguratss.com/artworks/painting/figurative",
-    depth: 1.2
-  },
-
-  // More Abstract Artworks
-  {
-    id: 29,
-    title: "Abstract Flow",
-    artist: "Malyadri K",
-    category: "Abstract",
-    src: "https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?auto=format&fit=crop&q=80&w=800",
-    aspectRatio: "square",
-    artworkUrl: "https://zigguratss.com/artworks/painting/abstract",
-    depth: 1.3
-  },
-  {
-    id: 30,
-    title: "Color Burst",
-    artist: "Meenu Goyal",
-    category: "Abstract",
-    src: "https://images.unsplash.com/photo-1536431311719-398b6704d4cc?auto=format&fit=crop&q=80&w=800",
-    aspectRatio: "landscape",
-    artworkUrl: "https://zigguratss.com/artworks/painting/abstract",
-    depth: 0.9
-  },
-  {
-    id: 31,
-    title: "Organic Shapes",
-    artist: "Mrinal Dutt",
-    category: "Abstract",
-    src: "https://images.unsplash.com/photo-1533158326339-7f3cf2404354?auto=format&fit=crop&q=80&w=800",
-    aspectRatio: "portrait",
-    artworkUrl: "https://zigguratss.com/artworks/painting/abstract",
-    depth: 1.4
-  },
-  {
-    id: 32,
-    title: "Motion Study",
-    artist: "Nitu Chhajer",
-    category: "Abstract",
-    src: "https://images.unsplash.com/photo-1618172193622-ae2d025f4032?auto=format&fit=crop&q=80&w=800",
-    aspectRatio: "wide",
-    artworkUrl: "https://zigguratss.com/artworks/painting/abstract",
-    depth: 1.1
-  },
-  {
-    id: 33,
-    title: "Energy Patterns",
-    artist: "Gulshan Achari",
-    category: "Abstract",
-    src: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&q=80&w=800",
-    aspectRatio: "square",
-    artworkUrl: "https://zigguratss.com/artworks/painting/abstract",
-    depth: 1.0
-  },
-  {
-    id: 34,
-    title: "Dreamscape",
-    artist: "Aniruddha Sarker",
-    category: "Abstract",
-    src: "https://images.unsplash.com/photo-1556139954-ec19cce61d61?auto=format&fit=crop&q=80&w=800",
-    aspectRatio: "landscape",
-    artworkUrl: "https://zigguratss.com/artworks/painting/abstract",
-    depth: 1.2
-  },
-  {
-    id: 35,
-    title: "Textures",
-    artist: "Ashis Mondal",
-    category: "Abstract",
-    src: "https://images.unsplash.com/photo-1549887534-1541e9326642?auto=format&fit=crop&q=80&w=800",
-    aspectRatio: "portrait",
-    artworkUrl: "https://zigguratss.com/artworks/painting/abstract",
-    depth: 0.8
-  },
-
-  // More Fine Art Artworks
-  {
-    id: 36,
-    title: "Heritage Study",
-    artist: "Sanjay Kumar",
-    category: "Fine Art",
-    src: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&q=80&w=800",
-    aspectRatio: "landscape",
-    artworkUrl: "https://zigguratss.com/artworks/painting/fine-art",
-    depth: 1.3
-  },
-  {
-    id: 37,
-    title: "Classical Realism",
-    artist: "Priya Deshmukh",
-    category: "Fine Art",
-    src: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&q=80&w=800",
-    aspectRatio: "portrait",
-    artworkUrl: "https://zigguratss.com/artworks/painting/fine-art",
-    depth: 0.9
-  },
-  {
-    id: 38,
-    title: "Still Life Grand",
-    artist: "Rajiv Sharma",
-    category: "Fine Art",
-    src: "https://images.unsplash.com/photo-1580136579312-94651dfd596d?auto=format&fit=crop&q=80&w=800",
-    aspectRatio: "square",
-    artworkUrl: "https://zigguratss.com/artworks/painting/fine-art",
-    depth: 1.1
-  },
-  {
-    id: 39,
-    title: "Museum Piece",
-    artist: "Kavita Singh",
-    category: "Fine Art",
-    src: "https://images.unsplash.com/photo-1582561833841-905fa9a0f7bf?auto=format&fit=crop&q=80&w=800",
-    aspectRatio: "landscape",
-    artworkUrl: "https://zigguratss.com/artworks/painting/fine-art",
-    depth: 1.4
-  },
-  {
-    id: 40,
-    title: "Academic Portrait",
-    artist: "Deepak Verma",
-    category: "Fine Art",
-    src: "https://images.unsplash.com/photo-1578818919176-1043deb30f8a?auto=format&fit=crop&q=80&w=800",
-    aspectRatio: "portrait",
-    artworkUrl: "https://zigguratss.com/artworks/painting/fine-art",
-    depth: 1.0
-  },
-
-  // More Aboriginal Artworks
-  {
-    id: 41,
-    title: "Dot Art",
-    artist: "Krishna Nair",
-    category: "Aboriginal",
-    src: "https://images.unsplash.com/photo-1558694640-edd997a816a7?auto=format&fit=crop&q=80&w=800",
-    aspectRatio: "square",
-    artworkUrl: "http://zigguratss.com/artworks/painting/aboriginal",
-    depth: 1.3
-  },
-  {
-    id: 42,
-    title: "Tribal Patterns",
-    artist: "Sarika Iyer",
-    category: "Aboriginal",
-    src: "https://images.unsplash.com/photo-1524784798181-33f76be7c3d1?auto=format&fit=crop&q=80&w=800",
-    aspectRatio: "landscape",
-    artworkUrl: "http://zigguratss.com/artworks/painting/aboriginal",
-    depth: 0.8
-  },
-  {
-    id: 43,
-    title: "Ancient Stories",
-    artist: "Manoj Kumar",
-    category: "Aboriginal",
-    src: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?auto=format&fit=crop&q=80&w=900",
-    aspectRatio: "portrait",
-    artworkUrl: "http://zigguratss.com/artworks/painting/aboriginal",
-    depth: 1.1
-  },
-
-  // More Religious Artworks
   {
     id: 44,
-    title: "Temple Art",
-    artist: "Radha Krishna",
+    title: "GANESHA",
+    artist: "PANCHU GHARAMI",
     category: "Religious",
-    src: "https://images.unsplash.com/photo-1545168442-2f7e9c4c8e85?auto=format&fit=crop&q=80&w=800",
+    src: "https://zigguratss.com/assets/upload/art/zigguratss_4c0f8c9cf8ae480fba7e520594875181.jpg",
     aspectRatio: "landscape",
-    artworkUrl: "https://zigguratss.com/artworks/painting/religious",
+    artworkUrl: "https://zigguratss.com/artwork/painting/religious/religious/acrylic-on-canvas/ganesha-1443",
     depth: 1.2
   },
   {
     id: 45,
-    title: "Devotion",
-    artist: "Yashoda Devi",
+    title: "SADHU 1",
+    artist: "PANCHU GHARAMI",
     category: "Religious",
-    src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=900",
+    src: "https://zigguratss.com/assets/upload/art/zigguratss_b6e9a233d68afa046719e3e49321fb58.jpg",
     aspectRatio: "portrait",
-    artworkUrl: "https://zigguratss.com/artworks/painting/religious",
+    artworkUrl: "https://zigguratss.com/artwork/painting/religion/religious/acrylic-on-canvas/sadhu-1-1447",
     depth: 0.9
   },
   {
     id: 46,
-    title: "Sacred Rituals",
-    artist: "Gopal Mishra",
+    title: "Navratini- Depicting Nine Women As Symbol Of Power And Joy Of Nine",
+    artist: "Mrinal Dutt",
     category: "Religious",
-    src: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&q=80&w=800",
+    src: "https://zigguratss.com/assets/upload/art/Navratini-_depicting_nine_women_as_symbol_of_power_and_joy_of_Nine_31x31_40k_68d7913076a96.jpeg",
     aspectRatio: "square",
-    artworkUrl: "https://zigguratss.com/artworks/painting/religious",
+    artworkUrl: "https://zigguratss.com/artwork/painting/religious/religious/acrylic-on-canvas/navratini--depicting-nine-women-as-symbol-of-power-and-joy-of-nine-1412",
     depth: 1.4
   },
   {
     id: 47,
-    title: "Divine Grace",
-    artist: "Lakshmi Patel",
+    title: "PANCHA MUKHI GANESHA",
+    artist: "PANCHU GHARAMI",
     category: "Religious",
-    src: "https://images.unsplash.com/photo-1493836512294-502baa1986e2?auto=format&fit=crop&q=80&w=800",
+    src: "https://zigguratss.com/assets/upload/art/zigguratss_6c42ff51506352296c5844ebb426706d.jpg",
     aspectRatio: "landscape",
-    artworkUrl: "https://zigguratss.com/artworks/painting/religious",
+    artworkUrl: "https://zigguratss.com/artwork/painting/religious/religious/acrylic-on-canvas/pancha-mukhi-ganesha-1442",
     depth: 1.0
   }
 ];
 
-// Simplified container animation - minimal, fast
+// Animation variants
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.03,
-      delayChildren: 0,
-      duration: 0.2
-    }
+    transition: { staggerChildren: 0.03, delayChildren: 0, duration: 0.2 }
   },
   exit: {
     opacity: 0,
@@ -560,28 +545,15 @@ const containerVariants = {
   }
 };
 
-// Simplified item animation - no blur, minimal transforms
 const itemVariants = {
-  hidden: {
-    opacity: 0,
-    scale: 0.9,
-    y: 20
-  },
+  hidden: { opacity: 0, scale: 0.9, y: 20 },
   visible: (i) => ({
     opacity: 1,
     scale: 1,
     y: 0,
-    transition: {
-      duration: 0.4,
-      ease: [0.22, 1, 0.36, 1],
-      delay: (i % 12) * 0.025
-    }
+    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1], delay: (i % 12) * 0.025 }
   }),
-  exit: {
-    opacity: 0,
-    scale: 0.95,
-    transition: { duration: 0.2 }
-  }
+  exit: { opacity: 0, scale: 0.95, transition: { duration: 0.2 } }
 };
 
 export const AntiGravityGallery = ({ enableBackground = false, enableParticles = false }) => {
@@ -663,32 +635,13 @@ export const AntiGravityGallery = ({ enableBackground = false, enableParticles =
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.05 }}
-                  style={isActive ? {
-                    background: `linear-gradient(to right, ${cat.gradient.split('from-')[1].split(' ')[0]}, ${cat.gradient.split('to-')[1]})`,
-                    boxShadow: `0 0 20px ${cat.glowColor}`
-                  } : {}}
+                  style={isActive ? { boxShadow: `0 10px 40px ${cat.glowColor}` } : {}}
                 >
                   {isActive && (
                     <motion.div
                       className={`absolute inset-0 bg-gradient-to-r ${cat.gradient}`}
                       layoutId="activeCategory"
                       transition={{ type: "spring", stiffness: 400, damping: 35 }}
-                    />
-                  )}
-
-                  {/* Animated background pulse for active */}
-                  {isActive && (
-                    <motion.div
-                      className={`absolute inset-0 bg-gradient-to-r ${cat.gradient}`}
-                      animate={{
-                        scale: [1, 1.1, 1],
-                        opacity: [0.5, 0.8, 0.5]
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }}
                     />
                   )}
 
@@ -702,7 +655,7 @@ export const AntiGravityGallery = ({ enableBackground = false, enableParticles =
           </motion.div>
         </MagneticField>
 
-        {/* Gallery Grid with Liquid Morph Transitions */}
+        {/* Gallery Grid */}
         <AntiGravityContainer>
           <AnimatePresence mode="wait">
             <motion.div
@@ -711,7 +664,7 @@ export const AntiGravityGallery = ({ enableBackground = false, enableParticles =
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-x-4 sm:gap-x-6 md:gap-x-8 lg:gap-x-12 perspective-1200"
+              className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-x-4 sm:gap-x-6 md:gap-x-8 lg:gap-x-12"
             >
               {filteredArtworks.map((art, index) => (
                 <motion.div
@@ -740,7 +693,7 @@ export const AntiGravityGallery = ({ enableBackground = false, enableParticles =
           </AnimatePresence>
         </AntiGravityContainer>
 
-        {/* Enhanced Stats Counter with glow */}
+        {/* View More Button */}
         <motion.div
           className="mt-24 text-center"
           initial={{ opacity: 0 }}
@@ -751,20 +704,14 @@ export const AntiGravityGallery = ({ enableBackground = false, enableParticles =
             className="inline-block glass px-8 py-4 rounded-full cursor-pointer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            style={{
-              boxShadow: `0 10px 40px ${activeCategoryData?.glowColor || 'rgba(0,0,0,0.3)'}`
-            }}
-            onClick={() => {
-              window.location.href = `https://zigguratss.com/artworks/painting/${activeCategory}`;
-            }}
+            style={{ boxShadow: `0 10px 40px ${activeCategoryData?.glowColor || 'rgba(0,0,0,0.3)'}` }}
+            onClick={() => window.open(`https://zigguratss.com/artworks/painting/${activeCategory}`, '_self')}
           >
-            <p className="text-sm text-zinc-400 font-medium">
-              View more
-            </p>
+            <p className="text-sm text-zinc-400 font-medium">View more</p>
           </motion.div>
         </motion.div>
 
-        {/* Shared Wall Preview Panel */}
+        {/* Wall Preview Panel */}
         <WallPreviewPanel
           artwork={hoveredArtwork}
           isVisible={hoveredArtwork !== null}
@@ -775,12 +722,11 @@ export const AntiGravityGallery = ({ enableBackground = false, enableParticles =
   );
 };
 
-function App() {
-  return (
-    <div className="min-h-screen relative overflow-hidden">
-      <AntiGravityGallery />
-    </div>
-  );
-}
+// Default export wraps the gallery component
+const App = () => (
+  <div className="min-h-screen relative overflow-hidden">
+    <AntiGravityGallery />
+  </div>
+);
 
 export default App;
