@@ -8,7 +8,8 @@ export const FloatingCard = ({
     className = "",
     delay = 0,
     enable3D = true,
-    enableMagnetic = true
+    enableMagnetic = true,
+    isCarousel = false
 }) => {
     const context = useAntiGravity();
     const scrollYProgress = context?.scrollYProgress;
@@ -16,20 +17,20 @@ export const FloatingCard = ({
     const [isHovered, setIsHovered] = useState(false);
 
     // Parallax movement based on scroll - Reduced range
-    const yRange = useMemo(() => [Math.random() * -20 * depth, Math.random() * 20 * depth], [depth]);
+    const yRange = useMemo(() => isCarousel ? [0, 0] : [Math.random() * -20 * depth, Math.random() * 20 * depth], [depth, isCarousel]);
     const y = scrollYProgress ? useTransform(scrollYProgress, [0, 1], yRange) : undefined;
 
     // 3D tilt effect
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
 
-    const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [8, -8]), { stiffness: 200, damping: 20 });
-    const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), { stiffness: 200, damping: 20 });
+    const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], isCarousel ? [10, -10] : [8, -8]), { stiffness: 200, damping: 20 });
+    const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], isCarousel ? [-10, 10] : [-8, 8]), { stiffness: 200, damping: 20 });
 
     // Floating animation parameters - Reduced bounce
-    const floatDuration = useMemo(() => 6 + Math.random() * 4, []);
-    const rotateRange = useMemo(() => [-1.5, 1.5], []);
-    const yBounce = useMemo(() => [0, -8 - Math.random() * 7, 0], []);  // Reduced from -15 to -8 max
+    const floatDuration = useMemo(() => isCarousel ? 0 : 6 + Math.random() * 4, [isCarousel]);
+    const rotateRange = useMemo(() => isCarousel ? [0, 0] : [-1.5, 1.5], [isCarousel]);
+    const yBounce = useMemo(() => isCarousel ? [0, 0, 0] : [0, -8 - Math.random() * 7, 0], [isCarousel]);
 
     const handleMouseMove = (e) => {
         if (!cardRef.current || !enable3D) return;
@@ -75,7 +76,11 @@ export const FloatingCard = ({
                     transformStyle: 'preserve-3d'
                 } : {}}
                 className="will-change-transform"
-                whileHover={{
+                whileHover={isCarousel ? {
+                    scale: 1.08,
+                    y: -12,
+                    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
+                } : {
                     scale: 1.02,
                     transition: { duration: 0.3 }
                 }}
@@ -106,7 +111,9 @@ export const FloatingCard = ({
                 <motion.div
                     className="absolute -inset-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                     style={{
-                        background: 'linear-gradient(135deg, rgba(78, 205, 196, 0.15), rgba(212, 175, 55, 0.15), rgba(167, 139, 250, 0.15))',
+                        background: isCarousel
+                            ? 'linear-gradient(135deg, rgba(212, 175, 55, 0.4), rgba(212, 175, 55, 0.1))'
+                            : 'linear-gradient(135deg, rgba(78, 205, 196, 0.15), rgba(212, 175, 55, 0.15), rgba(167, 139, 250, 0.15))',
                         filter: 'blur(12px)'
                     }}
                 />

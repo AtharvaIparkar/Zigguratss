@@ -11,7 +11,8 @@ export const FloatingImage = React.memo(({
     artworkUrl,
     aspectRatio = "landscape",
     depth = 1,
-    onHoverStart
+    onHoverStart,
+    isCarousel = false
 }) => {
     const [isLoaded, setIsLoaded] = useState(false);
     const ref = useRef(null);
@@ -24,12 +25,13 @@ export const FloatingImage = React.memo(({
     };
 
     return (
-        <FloatingCard depth={depth} delay={0}>
+        <FloatingCard depth={depth} delay={0} isCarousel={isCarousel}>
             <motion.div
                 ref={ref}
-                className="relative rounded-lg overflow-hidden group/img cursor-pointer"
+                className={`relative rounded-lg overflow-hidden group/img cursor-pointer w-full h-full block ${isCarousel ? 'hover-shimmer' : ''}`}
                 onHoverStart={() => onHoverStart?.({ src, alt, title, artist, category, artworkUrl, aspectRatio })}
-                whileHover={{
+                onClick={() => onHoverStart?.({ src, alt, title, artist, category, artworkUrl, aspectRatio })}
+                whileHover={isCarousel ? {} : {
                     scale: 1.03,
                     y: -5,
                     transition: { duration: 0.3 }
@@ -67,10 +69,17 @@ export const FloatingImage = React.memo(({
                             <div
                                 className="absolute inset-0 opacity-0 group-hover/img:opacity-100 transition-opacity duration-500 pointer-events-none"
                                 style={{
-                                    background: `linear-gradient(135deg, ${getCategoryGradient(category)}, transparent 60%)`,
+                                    background: isCarousel
+                                        ? `linear-gradient(135deg, rgba(212, 175, 55, 0.3), transparent 60%)`
+                                        : `linear-gradient(135deg, ${getCategoryGradient(category)}, transparent 60%)`,
                                     mixBlendMode: 'soft-light'
                                 }}
                             />
+
+                            {/* Shimmer overlay for carousel */}
+                            {isCarousel && (
+                                <div className="absolute inset-0 -translate-x-[150%] skew-x-[-20deg] bg-gradient-to-r from-transparent via-white/15 to-transparent group-hover/img:animate-painting-shimmer pointer-events-none" />
+                            )}
 
                             {/* Subtle hover hint */}
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end justify-center pb-3 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 pointer-events-none">

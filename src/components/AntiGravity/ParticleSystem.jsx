@@ -1,6 +1,27 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
+// Utility to create a cached orb canvas for better performance
+const createOrbCache = (size, glow, color) => {
+    const canvas = document.createElement('canvas');
+    const totalSize = (size + glow) * 2;
+    canvas.width = totalSize;
+    canvas.height = totalSize;
+    const ctx = canvas.getContext('2d');
+
+    const center = totalSize / 2;
+    const gradient = ctx.createRadialGradient(center, center, 0, center, center, size + glow);
+    gradient.addColorStop(0, color);
+    gradient.addColorStop(1, 'transparent');
+
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    ctx.arc(center, center, size + glow, 0, Math.PI * 2);
+    ctx.fill();
+
+    return canvas;
+};
+
 class Particle {
     constructor(canvas, type = 'dust') {
         this.canvas = canvas;
@@ -12,7 +33,6 @@ class Particle {
         this.x = Math.random() * this.canvas.width;
         this.y = Math.random() * this.canvas.height;
 
-        // Different behaviors for different particle types
         switch (this.type) {
             case 'orb':
                 this.size = Math.random() * 4 + 2;
@@ -20,15 +40,17 @@ class Particle {
                 this.baseVy = (Math.random() - 0.5) * 0.3;
                 this.glow = Math.random() * 10 + 5;
                 this.color = `hsla(${Math.random() * 60 + 30}, 70%, 65%, 0.6)`;
+                // Pre-render the orb to an offscreen canvas
+                this.cachedCanvas = createOrbCache(this.size, this.glow, this.color);
                 break;
             case 'star':
                 this.size = Math.random() * 2 + 1;
                 this.baseVx = (Math.random() - 0.5) * 0.1;
-                this.baseVy = -Math.random() * 0.2 - 0.05; // Slow upward drift
+                this.baseVy = -Math.random() * 0.2 - 0.05;
                 this.twinkle = Math.random() * Math.PI * 2;
                 this.color = `hsla(45, 80%, 80%, ${Math.random() * 0.4 + 0.2})`;
                 break;
-            default: // dust
+            default:
                 this.size = Math.random() * 2 + 0.5;
                 this.baseVx = (Math.random() - 0.5) * 0.2;
                 this.baseVy = (Math.random() - 0.5) * 0.2;
@@ -37,11 +59,9 @@ class Particle {
 
         this.vx = this.baseVx;
         this.vy = this.baseVy;
-        this.life = 1;
     }
 
     update(mouseX, mouseY, deltaTime) {
-        // Mouse interaction - magnetic effect
         if (mouseX !== null && mouseY !== null) {
             const dx = mouseX - this.x;
             const dy = mouseY - this.y;
@@ -55,10 +75,7 @@ class Particle {
             }
         }
 
-        // Add slight anti-gravity
         this.vy -= 0.01 * deltaTime;
-
-        // Apply velocity with damping
         const damping = 0.98;
         this.vx *= damping;
         this.vy *= damping;
@@ -66,12 +83,10 @@ class Particle {
         this.x += this.vx * deltaTime;
         this.y += this.vy * deltaTime;
 
-        // Twinkle effect for stars
         if (this.type === 'star') {
             this.twinkle += 0.05 * deltaTime;
         }
 
-        // Boundary wrapping
         if (this.x < 0) this.x = this.canvas.width;
         if (this.x > this.canvas.width) this.x = 0;
         if (this.y < 0) this.y = this.canvas.height;
@@ -79,32 +94,21 @@ class Particle {
     }
 
     draw(ctx) {
-        ctx.save();
-
         switch (this.type) {
             case 'orb':
-                // Glowing orb
-                const gradient = ctx.createRadialGradient(
-                    this.x, this.y, 0,
-                    this.x, this.y, this.size + this.glow
-                );
-                gradient.addColorStop(0, this.color);
-                gradient.addColorStop(1, 'transparent');
-                ctx.fillStyle = gradient;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size + this.glow, 0, Math.PI * 2);
-                ctx.fill();
+                if (this.cachedCanvas) {
+                    const offset = this.cachedCanvas.width / 2;
+                    ctx.drawImage(this.cachedCanvas, this.x - offset, this.y - offset);
+                }
                 break;
 
             case 'star':
-                // Twinkling star
                 const alpha = Math.abs(Math.sin(this.twinkle)) * 0.5 + 0.3;
                 ctx.fillStyle = this.color.replace(/[\d.]+\)$/, `${alpha})`);
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
 
-                // Star sparkle
                 if (alpha > 0.6) {
                     ctx.strokeStyle = this.color.replace(/[\d.]+\)$/, `${alpha * 0.5})`);
                     ctx.lineWidth = 0.5;
@@ -117,14 +121,12 @@ class Particle {
                 }
                 break;
 
-            default: // dust
+            default:
                 ctx.fillStyle = this.color;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
         }
-
-        ctx.restore();
     }
 }
 
@@ -143,9 +145,8 @@ export const ParticleSystem = ({
         const canvas = canvasRef.current;
         if (!canvas) return;
 
-        const ctx = canvas.getContext('2d');
+        const ctx = canvas.getContext('2d', { alpha: true });
 
-        // Set canvas size
         const resizeCanvas = () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
@@ -153,13 +154,11 @@ export const ParticleSystem = ({
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
-        // Initialize particles
         particlesRef.current = Array.from({ length: particleCount }, () => {
             const type = types[Math.floor(Math.random() * types.length)];
             return new Particle(canvas, type);
         });
 
-        // Mouse tracking
         const handleMouseMove = (e) => {
             mouseRef.current = { x: e.clientX, y: e.clientY };
         };
@@ -170,17 +169,17 @@ export const ParticleSystem = ({
         window.addEventListener('mousemove', handleMouseMove);
         window.addEventListener('mouseleave', handleMouseLeave);
 
-        // Animation loop
         const animate = (currentTime) => {
-            const deltaTime = Math.min((currentTime - lastTimeRef.current) / 16, 2); // Normalize to ~60fps
+            const deltaTime = Math.min((currentTime - lastTimeRef.current) / 16, 2);
             lastTimeRef.current = currentTime;
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            particlesRef.current.forEach(particle => {
-                particle.update(mouseRef.current.x, mouseRef.current.y, deltaTime);
-                particle.draw(ctx);
-            });
+            const particles = particlesRef.current;
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update(mouseRef.current.x, mouseRef.current.y, deltaTime);
+                particles[i].draw(ctx);
+            }
 
             frameRef.current = requestAnimationFrame(animate);
         };

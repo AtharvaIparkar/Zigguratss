@@ -261,3 +261,51 @@ body {
     }
   }
 }
+
+/* Infinite Carousel Animations */
+@keyframes carousel-left {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(calc(-33.3333333%));
+  }
+}
+
+@keyframes carousel-right {
+  0% {
+    transform: translateX(calc(-33.3333333%));
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-carousel-left {
+  animation: carousel-left linear infinite;
+}
+
+.animate-carousel-right {
+  animation: carousel-right linear infinite;
+}
+
+.carousel-paused {
+  animation-play-state: paused !important;
+}
+
+@keyframes painting-shimmer {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+  }
+
+  60%,
+  100% {
+    transform: translateX(200%) skewX(-20deg);
+  }
+}
+
+.animate-painting-shimmer {
+  animation: painting-shimmer 2.5s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}

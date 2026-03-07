@@ -10,8 +10,8 @@ const isMobile = window.innerWidth < 768;
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AntiGravityGallery
-      enableBackground={!isMobile}
-      enableParticles={!isMobile}
+      enableBackground={true}
+      enableParticles={true}
     />
   </StrictMode>,
 )
