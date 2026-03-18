@@ -32,8 +32,16 @@ export const FloatingCard = ({
     const rotateRange = useMemo(() => isCarousel ? [0, 0] : [-1.5, 1.5], [isCarousel]);
     const yBounce = useMemo(() => isCarousel ? [0, 0, 0] : [0, -8 - Math.random() * 7, 0], [isCarousel]);
 
+    const lastMouseUpdate = useRef(0);
+
     const handleMouseMove = (e) => {
         if (!cardRef.current || !enable3D) return;
+
+        // Throttle layout reads to ~20fps to prevent thrashing on fast mouse sweeps
+        // Visuals remain perfectly smooth because rotateX/rotateY use useSpring physics
+        const now = performance.now();
+        if (now - lastMouseUpdate.current < 50) return;
+        lastMouseUpdate.current = now;
 
         const rect = cardRef.current.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;

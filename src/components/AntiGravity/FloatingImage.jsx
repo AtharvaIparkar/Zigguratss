@@ -56,7 +56,8 @@ export const FloatingImage = React.memo(({
                             <motion.img
                                 src={src}
                                 alt={alt}
-                                loading="lazy"
+                                loading={isCarousel ? "eager" : "lazy"}
+                                decoding="async"
                                 className="w-full h-full object-cover"
                                 onLoad={() => setIsLoaded(true)}
                                 initial={{ opacity: 0 }}
