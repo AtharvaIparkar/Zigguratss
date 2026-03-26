@@ -47,7 +47,9 @@ body {
   margin: 0;
   background: linear-gradient(135deg, #0a0a0f 0%, #1a1a24 50%, #0a0a0f 100%);
   color: var(--text-primary);
-  font-family: 'Inter', 'Outfit', system-ui, -apple-system, sans-serif;
+  font-family: 'Lato', 'Inter', 'Outfit', system-ui, -apple-system, sans-serif;
+  font-style: normal;
+  font-weight: 400;
   overflow-x: hidden;
 }
 
