@@ -1,13 +1,11 @@
-import TermsAndConditions from './components/TermsAndConditions'
-import BackgroundEffects from './components/BackgroundEffects'
-
+import React from 'react';
+import TermsAndConditions from './components/TermsAndConditions';
 function App() {
   return (
-    <div className="bg-dark-bg min-h-screen text-white relative overflow-x-hidden selection:bg-gold selection:text-black">
-      <BackgroundEffects />
+    <div className="bg-deep-black min-h-screen text-white relative overflow-x-hidden selection:bg-amber-gold selection:text-black scroll-smooth">
       <TermsAndConditions />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
